@@ -1330,6 +1330,8 @@ function _sendOrder(msg, ref){
 }
 
 /* ---------- Boot ---------- */
+/* Restore a clean permalink handed off by 404.html (?p=/postname). */
+(function(){ const p=new URLSearchParams(location.search).get('p'); if(p){ history.replaceState({}, '', p); } })();
 _migrateHash(); _ensureDrawer(); _renderCartCount(); render();
 
 </script>
