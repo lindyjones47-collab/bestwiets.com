@@ -497,6 +497,28 @@ blockquote{margin:0;}
 nav.links a{cursor:pointer;}
 .product-thumb img,.pd-image img{width:100%;height:100%;object-fit:cover;}
 
+/* ---- Payment method (checkout) ---- */
+.pay-notice{
+  background:var(--cream); border:1px solid var(--line); border-left:3px solid var(--forest);
+  border-radius:10px; padding:14px 16px; margin:6px 0 14px;
+  font-size:.9rem; line-height:1.65; color:#4a4a45;
+}
+.pay-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.pay-card{
+  position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:5px;
+  padding:18px 12px; border:1.5px solid var(--line); border-radius:14px; background:#fff;
+  cursor:pointer; transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.pay-card input{position:absolute; opacity:0; width:0; height:0; pointer-events:none;}
+.pay-card:hover{border-color:var(--forest);}
+.pay-card:has(input:checked), .pay-card.is-selected{
+  border-color:var(--forest); box-shadow:inset 0 0 0 1px var(--forest); background:#f3f7f1;
+}
+.pay-ico{font-size:1.7rem; line-height:1; color:var(--forest-deep);}
+.pay-title{font-weight:700; color:var(--forest-deep); font-size:1rem;}
+.pay-sub{font-size:.8rem; color:#6f6f68;}
+@media (max-width:600px){ .pay-grid{grid-template-columns:1fr; gap:10px;} .pay-card{flex-direction:row; justify-content:flex-start; gap:12px; text-align:left;} }
+
 /* ============ Responsive refinements (touch targets + tablet/phone spacing) ============ */
 img{max-width:100%;}                                   /* never let an image force overflow */
 @media (max-width:880px){
@@ -1296,15 +1318,23 @@ function pageCheckout(){
             <div><label for="city">City</label><input id="city" type="text" placeholder="Amsterdam"></div>
           </div>
           <div><label for="notes">Delivery notes (optional)</label><textarea id="notes" placeholder="Buzzer code, preferred time, etc."></textarea></div>
-          <div><label for="pay">Payment method</label><select id="pay"><option>Cash on delivery</option><option>Arrange in advance</option></select></div>
+          <div>
+            <label>Payment method *</label>
+            <div class="pay-notice">Thank you for your order. After checkout, our team will contact you via email or WhatsApp with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.</div>
+            <div class="pay-grid">
+              <label class="pay-card"><input type="radio" name="pay" value="Bank Transfer" checked><span class="pay-ico">🏦</span><span class="pay-title">Bank Transfer</span><span class="pay-sub">Pay by bank</span></label>
+              <label class="pay-card"><input type="radio" name="pay" value="Bitcoin"><span class="pay-ico">₿</span><span class="pay-title">Bitcoin</span><span class="pay-sub">BTC crypto</span></label>
+              <label class="pay-card"><input type="radio" name="pay" value="USDT"><span class="pay-ico">₮</span><span class="pay-title">USDT</span><span class="pay-sub">Tether crypto</span></label>
+            </div>
+          </div>
           <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.9rem;"><input id="age-confirm" type="checkbox" style="width:auto;margin-top:4px;"> I confirm I am of legal age in my jurisdiction and accept the terms.</label>
           <button class="btn" style="justify-self:flex-start;" id="place-order">Place order</button>
         </div>
         <div id="order-confirmation" style="display:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px;text-align:center;">
           <div style="font-size:3rem;margin-bottom:12px;">✅</div>
           <h2 style="color:var(--forest-deep);">Order received</h2>
-          <p style="color:#4a4a45;max-width:420px;margin:0 auto 16px;">Thanks, <span id="conf-name"></span>! Your order reference is <strong class="mono" id="conf-ref"></strong>. Your order has opened in WhatsApp — just hit send to confirm it, and we'll reply with your delivery window.</p>
-          <p style="color:#6f6f68;font-size:.85rem;">If WhatsApp didn't open, message us at the number on the Contact page and quote your reference.</p>
+          <p style="color:#4a4a45;max-width:460px;margin:0 auto 16px;">Thank you for your order, <span id="conf-name"></span>! Your order reference is <strong class="mono" id="conf-ref"></strong>. Our team will contact you via email or WhatsApp with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.</p>
+          <p style="color:#6f6f68;font-size:.85rem;">A WhatsApp message with your order has opened — hit send to reach us faster. If it didn't open, message us from the Contact page and quote your reference.</p>
           <a class="btn ghost" data-nav="shop" style="margin-top:18px;">Back to shop</a>
         </div>
       </div>
@@ -1324,6 +1354,11 @@ function renderSummary(){
 function _val(id){ const el=document.getElementById(id); return el ? el.value.trim() : ''; }
 function initCheckout(){
   renderSummary();
+  // Payment-card selection highlight (works even without CSS :has support).
+  const cards=[...document.querySelectorAll('.pay-card')];
+  const syncPay=()=>cards.forEach(c=>c.classList.toggle('is-selected', c.querySelector('input').checked));
+  cards.forEach(c=>c.querySelector('input').addEventListener('change', syncPay));
+  syncPay();
   const btn=document.getElementById('place-order');
   btn.onclick=()=>{
     if(CART.length===0){ alert('Your cart is empty — add something from the menu first.'); return; }
@@ -1334,10 +1369,11 @@ function initCheckout(){
     // Build an itemised order message.
     const lines=CART.map(i=>`• ${i.qty}× ${i.name} — €${(i.price*i.qty).toFixed(2)}`).join('\n');
     const addr=[_val('address'), [_val('postcode'),_val('city')].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+    const pay=(document.querySelector('input[name=pay]:checked')||{}).value||'Bank Transfer';
     const msg=
 `*New order ${ref}*\n\n${lines}\n\n*Total: €${cartTotal().toFixed(2)}*\n\n`+
 `*Name:* ${name}\n*Phone:* ${_val('phone')||'—'}\n*Email:* ${_val('email')}\n`+
-`*Address:* ${addr}\n*Payment:* ${_val('pay')}\n*Notes:* ${_val('notes')||'—'}`;
+`*Address:* ${addr}\n*Payment:* ${pay}\n*Notes:* ${_val('notes')||'—'}`;
     _sendOrder(msg, ref);
     // Show confirmation.
     document.getElementById('conf-name').textContent=name.split(' ')[0];
