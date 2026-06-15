@@ -779,7 +779,7 @@ const LOC_PAGES=['home','shop','delivery','about','contact'];   // pages with /n
 let LANG='en', CUR_ROUTE='home', CUR_PARAM;
 function _pathForLang(lang, route, param){
   const pre=(lang==='nl'||lang==='de')&&LOC_PAGES.includes(route)?'/'+lang:'';
-  if(!route || route==='home') return pre||'/';
+  if(!route || route==='home') return pre?pre+'/':'/';  // /nl/ , /de/ , / (folder index = trailing slash)
   if(route==='article') return '/'+param;          // blog post -> /postname
   if(route==='product')  return '/product/'+param; // product   -> /product/postname
   return pre+'/'+route;                             // pages     -> /shop, /nl/shop, ...

@@ -108,7 +108,10 @@ def write_route(out_path, title, desc, path, og_image, jsonld, alts=None):
 LOC_PAGES = ["home", "shop", "delivery", "about", "contact"]
 def loc_url(lang, key):
     base = {"home": "", "shop": "/shop", "delivery": "/delivery", "about": "/about", "contact": "/contact"}[key]
-    return (("/" + lang) if lang != "en" else "") + base if (base or lang != "en") else "/"
+    pre = ("/" + lang) if lang != "en" else ""
+    if key == "home":
+        return (pre + "/") if pre else "/"   # /nl/ , /de/ , / (folder index resolves with trailing slash)
+    return pre + base                         # /shop , /nl/shop , ...
 def alts_for(key):
     return [("en", loc_url("en", key)), ("nl", loc_url("nl", key)),
             ("de", loc_url("de", key)), ("x-default", loc_url("en", key))]

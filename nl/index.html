@@ -13,12 +13,12 @@
 <title>Wiet Kopen &amp; Online Bestellen | Cannabis &amp; Hasj Bezorgd – WietStore</title>
 <meta name="description" content="Wiet kopen en online bestellen bij WietStore. Premium cannabis, hasj en wietolie, discreet bezorgd in Nederland, België en Duitsland. Betaal met bank, Bitcoin of USDT.">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="canonical" href="https://bestwiets.com/nl">
+<link rel="canonical" href="https://bestwiets.com/nl/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WietStore">
 <meta property="og:title" content="Wiet Kopen &amp; Online Bestellen | Cannabis &amp; Hasj Bezorgd – WietStore">
 <meta property="og:description" content="Wiet kopen en online bestellen bij WietStore. Premium cannabis, hasj en wietolie, discreet bezorgd in Nederland, België en Duitsland. Betaal met bank, Bitcoin of USDT.">
-<meta property="og:url" content="https://bestwiets.com/nl">
+<meta property="og:url" content="https://bestwiets.com/nl/">
 <meta property="og:image" content="https://bestwiets.com/images/2026/06/Tropicana-Cookies.png">
 <meta property="og:locale" content="nl_NL">
 <meta property="og:locale:alternate" content="de_DE">
@@ -28,8 +28,8 @@
 <meta name="twitter:description" content="Wiet kopen en online bestellen bij WietStore. Premium cannabis, hasj en wietolie, discreet bezorgd in Nederland, België en Duitsland. Betaal met bank, Bitcoin of USDT.">
 <meta name="twitter:image" content="https://bestwiets.com/images/2026/06/Tropicana-Cookies.png">
 <link rel="alternate" hreflang="en" href="https://bestwiets.com/">
-<link rel="alternate" hreflang="nl" href="https://bestwiets.com/nl">
-<link rel="alternate" hreflang="de" href="https://bestwiets.com/de">
+<link rel="alternate" hreflang="nl" href="https://bestwiets.com/nl/">
+<link rel="alternate" hreflang="de" href="https://bestwiets.com/de/">
 <link rel="alternate" hreflang="x-default" href="https://bestwiets.com/">
 <!--SEO:END-->
 
@@ -781,7 +781,7 @@ const LOC_PAGES=['home','shop','delivery','about','contact'];   // pages with /n
 let LANG='en', CUR_ROUTE='home', CUR_PARAM;
 function _pathForLang(lang, route, param){
   const pre=(lang==='nl'||lang==='de')&&LOC_PAGES.includes(route)?'/'+lang:'';
-  if(!route || route==='home') return pre||'/';
+  if(!route || route==='home') return pre?pre+'/':'/';  // /nl/ , /de/ , / (folder index = trailing slash)
   if(route==='article') return '/'+param;          // blog post -> /postname
   if(route==='product')  return '/product/'+param; // product   -> /product/postname
   return pre+'/'+route;                             // pages     -> /shop, /nl/shop, ...
