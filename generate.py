@@ -97,9 +97,11 @@ def seo_block(title, desc, path, og_image, jsonld, alts=None):
 
 MARKER = re.compile(r"<!--SEO:START-->.*?<!--SEO:END-->", re.S)
 
-def write_route(out_path, title, desc, path, og_image, jsonld, alts=None):
+def write_route(out_path, title, desc, path, og_image, jsonld, alts=None, lang="nl"):
     block = "<!--SEO:START-->\n" + seo_block(title, desc, path, og_image, jsonld, alts) + "\n<!--SEO:END-->"
     html = MARKER.sub(lambda m: block, TEMPLATE)
+    if lang != "nl":
+        html = html.replace('<html lang="nl">', '<html lang="%s">' % lang, 1)
     full = os.path.join(ROOT, out_path)
     os.makedirs(os.path.dirname(full), exist_ok=True) if os.path.dirname(out_path) else None
     open(full, "w", encoding="utf-8").write(html)
@@ -152,7 +154,7 @@ for lang in ("en", "de"):
         title, desc = LOC_META[lang][key]
         path = loc_url(lang, key)
         out = "%s/index.html" % lang if key == "home" else "%s/%s.html" % (lang, key)
-        write_route(out, title, desc, path, OG_DEFAULT, [], alts_for(key))
+        write_route(out, title, desc, path, OG_DEFAULT, [], alts_for(key), lang=lang)
         urls.append((path, TODAY, "0.8" if key in ("home", "shop") else "0.5"))
 
 # Blog articles
@@ -167,7 +169,7 @@ for b in BLOG:
                              "logo": {"@type": "ImageObject", "url": SITE + "/favicon.svg"}},
                "mainEntityOfPage": SITE + path}
     bc = crumb([("Home", "/"), ("Blog", "/blog"), (b["title"], path)])
-    write_route("%s.html" % b["slug"], title, b["excerpt"], path, img, [article, bc])
+    write_route("%s.html" % b["slug"], title, b["excerpt"], path, img, [article, bc], lang=b.get("lang", "nl"))
     urls.append((path, TODAY, "0.7"))
 
 # Products

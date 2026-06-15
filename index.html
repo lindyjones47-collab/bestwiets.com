@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -881,7 +881,8 @@ function render(){
   const [route,param]=_parsePath();
   CUR_ROUTE=route; CUR_PARAM=param;
   setMeta(route, param);
-  document.documentElement.lang = LANG;
+  const _art = route==='article' && BLOG.find(x=>x.slug===param);
+  document.documentElement.lang = _art ? (_art.lang||'nl') : LANG;
   const app=document.getElementById('app');
   const loc=(LANG!=='en') && typeof L10N!=='undefined' && L10N[LANG] && L10N[LANG][route];
   if(loc){
