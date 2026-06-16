@@ -781,6 +781,7 @@ function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 function jsq(s){ return s.replace(/'/g,"\\'"); }
 function iconFor(c){ return {Flower:"🌸","Lil Buds":"🌿",Hash:"🍫",Grit:"🪙","Value Pack":"📦"}[c]||"🌱"; }
 function bySlug(s){ return PRODUCTS.find(p=>p.slug===s); }
+function _stk(s){ return s==='Sold out'?'Uitverkocht':'Op voorraad'; }
 
 /* ---------- Router (clean postname permalinks + NL/DE locales via History API) ---------- */
 const PAGE_ROUTES=['shop','blog','delivery','about','returns','contact','checkout','bestelhandleiding','voorwaarden'];
@@ -1168,7 +1169,7 @@ function initShop(){
     grid.innerHTML=items.map(p=>`
       <div class="product-card">
         <a class="product-thumb" onclick="go('product','${p.slug}')" style="cursor:pointer;">
-          <span class="badge ${p.stock==='Sold out'?'sold':''}">${p.stock}</span>
+          <span class="badge ${p.stock==='Sold out'?'sold':''}">${_stk(p.stock)}</span>
           <img src="${p.img}" alt="${esc(p.name)}" loading="lazy">
         </a>
         <div class="product-info">
@@ -1199,7 +1200,7 @@ function pageProduct(slug){
     <div class="pd-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
       <div class="pd-image" style="aspect-ratio:300/369;border-radius:var(--radius);overflow:hidden;position:relative;">
         <img src="${p.img}" alt="${esc(p.name)}">
-        <span class="badge ${inStock?'':'sold'}">${p.stock}</span>
+        <span class="badge ${inStock?'':'sold'}">${_stk(p.stock)}</span>
       </div>
       <div class="pd-info">
         <span class="pd-cat" style="font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;color:var(--clay);">${p.cat}</span>
@@ -1217,7 +1218,7 @@ function pageProduct(slug){
           <li style="font-size:.85rem;color:#55554f;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;"><strong style="display:block;color:var(--forest-deep);font-family:'Roboto Condensed',sans-serif;font-size:.7rem;text-transform:uppercase;margin-bottom:3px;">Categorie</strong>${p.cat}</li>
           <li style="font-size:.85rem;color:#55554f;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;"><strong style="display:block;color:var(--forest-deep);font-family:'Roboto Condensed',sans-serif;font-size:.7rem;text-transform:uppercase;margin-bottom:3px;">Prijs</strong>€${p.price.toFixed(2)}</li>
           <li style="font-size:.85rem;color:#55554f;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;"><strong style="display:block;color:var(--forest-deep);font-family:'Roboto Condensed',sans-serif;font-size:.7rem;text-transform:uppercase;margin-bottom:3px;">Beoordeling</strong>${p.rating?p.rating.toFixed(2):'—'}</li>
-          <li style="font-size:.85rem;color:#55554f;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;"><strong style="display:block;color:var(--forest-deep);font-family:'Roboto Condensed',sans-serif;font-size:.7rem;text-transform:uppercase;margin-bottom:3px;">Beschikbaarheid</strong>${p.stock}</li>
+          <li style="font-size:.85rem;color:#55554f;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;"><strong style="display:block;color:var(--forest-deep);font-family:'Roboto Condensed',sans-serif;font-size:.7rem;text-transform:uppercase;margin-bottom:3px;">Beschikbaarheid</strong>${_stk(p.stock)}</li>
         </ul>
       </div>
     </div>
@@ -1226,7 +1227,7 @@ function pageProduct(slug){
     <div class="section-head" style="margin-bottom:32px;"><span class="eyebrow">Misschien vind je dit ook leuk</span><h2>Meer uit deze categorie</h2></div>
     <div class="grid cols-4">${related.map(r=>`
       <div class="product-card" onclick="go('product','${r.slug}')" style="cursor:pointer;">
-        <div class="product-thumb"><span class="badge ${r.stock==='Sold out'?'sold':''}">${r.stock}</span><img src="${r.img}" alt="${esc(r.name)}" loading="lazy"></div>
+        <div class="product-thumb"><span class="badge ${r.stock==='Sold out'?'sold':''}">${_stk(r.stock)}</span><img src="${r.img}" alt="${esc(r.name)}" loading="lazy"></div>
         <div class="product-info"><h3>${esc(r.name)}</h3><div class="product-meta"><span class="price">€${r.price.toFixed(2)}</span><span class="rating">${r.rating?'★ '+r.rating.toFixed(2):'—'}</span></div></div>
       </div>`).join('')}</div>
   </div></section>`:''}`;
