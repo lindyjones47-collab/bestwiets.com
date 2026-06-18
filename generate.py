@@ -157,6 +157,22 @@ for lang in ("en", "de"):
         write_route(out, title, desc, path, OG_DEFAULT, [], alts_for(key), lang=lang)
         urls.append((path, TODAY, "0.8" if key in ("home", "shop") else "0.5"))
 
+# Belgium country landing pages (regional hreflang nl-BE / fr-BE)
+BE_ALTS = [("nl-BE", "/be"), ("fr-BE", "/fr"), ("nl", "/"), ("x-default", "/")]
+BELGIUM = {
+    "be": ("nl", "Wiet Kopen België | Veilige & Discrete Levering – WietStore",
+           "Wiet kopen in België? Bestel premium wiet, hasj en cali weed online bij WietStore. Discreet en betrouwbaar bezorgd in heel België, vaak binnen 2–4 werkdagen.",
+           "Wiet kopen in België"),
+    "fr": ("fr", "Acheter du Cannabis en Belgique | Livraison Discrète – WietStore",
+           "Acheter du cannabis en ligne en Belgique : weed, haschich et cali weed premium, livrés discrètement partout en Belgique. Paiement par virement, Bitcoin ou USDT.",
+           "Acheter du cannabis en Belgique"),
+}
+for key, (lang, title, desc, crumb_name) in BELGIUM.items():
+    path = "/" + key
+    bc = crumb([("Home", "/"), (crumb_name, path)])
+    write_route("%s.html" % key, title, desc, path, OG_DEFAULT, [bc], BE_ALTS, lang=lang)
+    urls.append((path, TODAY, "0.9"))
+
 # Blog articles
 for b in BLOG:
     path = "/" + b["slug"]
