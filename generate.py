@@ -173,6 +173,16 @@ for key, (lang, title, desc, crumb_name) in BELGIUM.items():
     write_route("%s.html" % key, title, desc, path, OG_DEFAULT, [bc], BE_ALTS, lang=lang)
     urls.append((path, TODAY, "0.9"))
 
+# Germany country landing page (German URL targeting "cannabis kaufen Deutschland")
+DE_LANDING_ALTS = [("de", "/de/cannabis-kaufen-deutschland"), ("nl", "/"), ("x-default", "/")]
+de_path = "/de/cannabis-kaufen-deutschland"
+de_bc = crumb([("Startseite", "/de/"), ("Cannabis kaufen Deutschland", de_path)])
+write_route("de/cannabis-kaufen-deutschland.html",
+            "Cannabis kaufen in Deutschland | Diskreter Versand – WietStore",
+            "Cannabis online kaufen und nach Deutschland liefern lassen. Premium Weed, Haschisch und Cali Weed in Coffeeshop-Qualität, diskret in 2–4 Werktagen geliefert.",
+            de_path, OG_DEFAULT, [de_bc], DE_LANDING_ALTS, lang="de")
+urls.append((de_path, TODAY, "0.9"))
+
 # Blog articles
 for b in BLOG:
     path = "/" + b["slug"]
