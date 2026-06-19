@@ -204,11 +204,23 @@ for p in PRODUCTS:
     title = "%s kopen – €%.2f | WietStore" % (p["name"], p["price"])
     desc = "%s online kopen bij WietStore. %s Discreet bezorgd in Nederland, België en Duitsland." % (p["name"], p["desc"])
     img = SITE + p["img"]
+    # additionalProperty entries (THC, Smaak, Effect, Medicinaal) — surfaces structured attributes to Google.
+    extras = []
+    if p.get("thc"):
+        extras.append({"@type": "PropertyValue", "name": "THC", "value": p["thc"]})
+    if p.get("flavors"):
+        extras.append({"@type": "PropertyValue", "name": "Smaak", "value": ", ".join(p["flavors"])})
+    if p.get("effects"):
+        extras.append({"@type": "PropertyValue", "name": "Effect", "value": ", ".join(p["effects"])})
+    if p.get("medicinal"):
+        extras.append({"@type": "PropertyValue", "name": "Medicinaal", "value": ", ".join(p["medicinal"])})
     product = {"@context": "https://schema.org", "@type": "Product", "name": p["name"], "image": img,
                "description": p["desc"], "category": p["cat"], "brand": {"@type": "Brand", "name": "WietStore"},
                "offers": {"@type": "Offer", "url": SITE + path, "price": "%.2f" % p["price"],
                           "priceCurrency": "EUR",
                           "availability": "https://schema.org/InStock" if p["stock"] == "In stock" else "https://schema.org/OutOfStock"}}
+    if extras:
+        product["additionalProperty"] = extras
     bc = crumb([("Home", "/"), ("Shop", "/shop"), (p["name"], path)])
     write_route("product/%s.html" % p["slug"], title, desc, path, img, [product, bc])
     urls.append((path, TODAY, "0.8"))
