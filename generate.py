@@ -26,6 +26,14 @@ def esc(s):
     return (str(s).replace("&", "&amp;").replace("<", "&lt;")
             .replace(">", "&gt;").replace('"', "&quot;"))
 
+def product_meta_desc(p):
+    """Concise, SERP-friendly meta description (~150 chars) — first sentence only."""
+    first = p["desc"].split(". ")[0].strip().rstrip(".")
+    md = "%s kopen bij WietStore. %s. Discreet bezorgd in NL, België & Duitsland." % (p["name"], first)
+    if len(md) > 158:
+        md = md[:155].rsplit(" ", 1)[0] + "…"
+    return md
+
 def extract_array(html, name):
     marker = "const %s = " % name
     i = html.index(marker) + len(marker)
@@ -38,7 +46,7 @@ BLOG = extract_array(TEMPLATE, "BLOG")
 # Page meta (kept in sync with _PAGE_SEO in index.html)
 PAGES = {
     "home":            ("/",                 "Wiet Kopen & Online Bestellen | Cannabis & Hasj Bezorgd – WietStore",
-                        "Wiet kopen en online bestellen bij WietStore. Premium cannabis, hasj en wietolie, discreet bezorgd in Nederland, België en Duitsland. Betaal met bank, Bitcoin of USDT."),
+                        "Wiet online kopen bij WietStore: premium cannabis, hasj en wietolie. Discreet bezorgd in NL, België & Duitsland. Betaal met bank, Bitcoin of USDT."),
     "shop":            ("/shop",             "Wiet, Hasj & Cali Weed Kopen – Online Cannabis Shop | WietStore",
                         "Bekijk het volledige assortiment: wiet, hasj, cali weed, gruis en wietolie. Online bestellen en discreet bezorgd in Nederland, België en Duitsland."),
     "blog":            ("/blog",             "Blog – Wiet & Cannabis Gidsen | WietStore",
@@ -48,13 +56,13 @@ PAGES = {
     "about":           ("/about",            "Over WietStore | Online Cannabis Shop",
                         "Premium cannabis van Amsterdam-coffeeshopkwaliteit, veilig en discreet bezorgd in NL, BE en DE."),
     "returns":         ("/returns",          "Retouren & Terugbetalingen | WietStore",
-                        "Lees ons retour- en terugbetalingsbeleid bij WietStore."),
+                        "Lees het retour- en terugbetalingsbeleid van WietStore: hoe je een beschadigde of onjuiste bestelling meldt en wat je kunt verwachten."),
     "contact":         ("/contact",          "Contact | WietStore",
                         "Vragen over je bestelling of bezorging? Neem contact op via e-mail of WhatsApp."),
     "bestelhandleiding":("/bestelhandleiding","Bestelhandleiding – Wiet Bestellen met Crypto | WietStore",
                         "Stap-voor-stap uitleg om wiet online te bestellen en veilig te betalen met crypto."),
     "voorwaarden":     ("/voorwaarden",      "Algemene Voorwaarden | WietStore",
-                        "De algemene voorwaarden van WietStore."),
+                        "De algemene voorwaarden van WietStore: bestellen, betalen, leeftijdsvereisten en je verantwoordelijkheden als klant. Lees ze voor je bestelt."),
 }
 
 FAQ = [
@@ -125,14 +133,14 @@ def alts_for(key):
             ("de", loc_url("de", key)), ("x-default", loc_url("nl", key))]
 LOC_META = {
     "en": {
-        "home": ("Buy Weed Online | Cannabis & Hash Delivered – WietStore", "Buy weed and hash online at WietStore. Premium cannabis, hash and oil, discreetly delivered across the Netherlands, Belgium and Germany. Pay by bank, Bitcoin or USDT."),
+        "home": ("Buy Weed Online | Cannabis & Hash Delivered – WietStore", "Buy weed and hash online at WietStore: premium cannabis, hash and oil, discreetly delivered across NL, Belgium & Germany. Pay by bank, Bitcoin or USDT."),
         "shop": ("Buy Weed, Hash & Cali Weed – Online Cannabis Shop | WietStore", "Browse the full range: weed, hash, cali weed, grit and cannabis oil. Order online and get it discreetly delivered in NL, BE and DE."),
         "delivery": ("Delivery & Shipping | WietStore", "Discreet, odourless delivery across the Netherlands, Belgium, Germany and France — often within 24 hours."),
         "about": ("About WietStore | Online Cannabis Shop", "Premium cannabis of Amsterdam coffeeshop quality, delivered safely and discreetly in NL, BE and DE."),
         "contact": ("Contact | WietStore", "Questions about your order or delivery? Get in touch by email or WhatsApp."),
     },
     "de": {
-        "home": ("Cannabis online kaufen & bestellen | Gras & Haschisch geliefert – WietStore", "Cannabis online kaufen bei WietStore. Premium Gras, Haschisch und Öl, diskret geliefert in die Niederlande, Belgien und Deutschland. Zahlung per Bank, Bitcoin oder USDT."),
+        "home": ("Cannabis online kaufen & bestellen | Gras & Haschisch geliefert – WietStore", "Cannabis online kaufen bei WietStore: Premium Gras, Haschisch und Öl. Diskret geliefert in NL, Belgien & Deutschland. Zahlung per Bank, Bitcoin oder USDT."),
         "shop": ("Gras, Haschisch & Cali Weed kaufen – Online Cannabis Shop | WietStore", "Entdecke das gesamte Sortiment: Gras, Haschisch, Cali Weed, Gruis und Öl. Online bestellen und diskret geliefert in NL, Belgien und Deutschland."),
         "delivery": ("Lieferung & Versand | WietStore", "Diskret und geruchsneutral geliefert in die Niederlande, Belgien, Deutschland und Frankreich — oft innerhalb von 24 Stunden."),
         "about": ("Über WietStore | Online Cannabis Shop", "Premium Cannabis in Amsterdamer Coffeeshop-Qualität, sicher und diskret geliefert in NL, BE und DE."),
@@ -368,9 +376,9 @@ urls.append((de_path, TODAY, "0.9"))
 # Prerolls / voorgedraaide joints category landing page (/prerolls)
 _pre_items = [p for p in PRODUCTS if p.get("cat") == "Prerolls"]
 if _pre_items:
-    pre_title = "Voorgedraaide Joints & Pre-Rolls Kopen | Handgerold – WietStore"
-    pre_desc = ("Voorgedraaide joints en pre-rolls kopen bij WietStore. Handgerolde joints van "
-                "premium wiet — Amnesia, Lemon Haze, Gelato en meer. Discreet bezorgd in NL, België en Duitsland.")
+    pre_title = "Voorgedraaide Joints & Pre-Rolls Kopen | WietStore"
+    pre_desc = ("Voorgedraaide joints en pre-rolls kopen bij WietStore: handgerold van premium wiet — "
+                "Amnesia, Lemon Haze, Gelato en meer. Discreet bezorgd in NL, BE & DE.")
     pre_og = SITE + "/images/2026/07/preroll-power-pack-18-gram.jpg"
     pre_bc = crumb([("Home", "/"), ("Pre-Rolls", "/prerolls")])
     pre_collection = {"@context": "https://schema.org", "@type": "CollectionPage",
@@ -380,23 +388,43 @@ if _pre_items:
                     "itemListElement": [{"@type": "ListItem", "position": i + 1,
                                          "url": SITE + "/product/" + p["slug"], "name": p["name"]}
                                         for i, p in enumerate(_pre_items)]}
+    # FAQ (visible content below + FAQPage schema, mirrors PREROLL_FAQ in index.html pagePrerolls)
+    PREROLL_FAQ = [
+        ("Wat zijn voorgedraaide joints?",
+         "Voorgedraaide joints, ook wel pre-rolls genoemd, zijn kant-en-klare joints die met de hand "
+         "zijn gerold van premium wiet. Je hoeft zelf niet te draaien — gewoon aansteken en genieten."),
+        ("Hoeveel joints zitten er in een pakket?",
+         "Onze pre-rolls zijn verkrijgbaar per 3, 12 of 30 stuks, waarbij grotere pakketten voordeliger "
+         "zijn per stuk. Daarnaast bieden we voordeelpakketten zoals het Preroll Power Pack van 18 gram."),
+        ("Welke soorten pre-rolls kan ik kiezen?",
+         "Kies uit energieke sativa's zoals Amnesia en Lemon Haze, gebalanceerde hybrides zoals Gelato, "
+         "of ontspannende indica's zoals Purple Kinky Kush. Elke soort heeft een aangegeven THC-bereik."),
+        ("Hoe worden de pre-rolls bezorgd?",
+         "Alle bestellingen worden discreet en geurloos verpakt en betrouwbaar bezorgd in Nederland, "
+         "België en Duitsland — vaak binnen enkele werkdagen."),
+    ]
+    pre_faq_schema = {"@context": "https://schema.org", "@type": "FAQPage",
+                      "mainEntity": [{"@type": "Question", "name": q,
+                                      "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in PREROLL_FAQ]}
+    pre_faq_html = '<h2>Veelgestelde vragen</h2>' + "".join(
+        "<h3>%s</h3><p>%s</p>" % (esc(q), esc(a)) for q, a in PREROLL_FAQ)
     pre_intro = ("Voorgedraaide joints kopen zonder zelf te rollen? Bij WietStore vind je handgerolde "
                  "pre-rolls van premium toppen — van frisse Amnesia en Lemon Haze tot romige Gelato en "
                  "krachtige indica's. Direct klaar voor gebruik en discreet, geurloos bezorgd in Nederland, "
                  "België en Duitsland. Vanaf 10 gram krijg je automatisch 3% korting.")
     pre_body = ('<section class="pr"><h1>Voorgedraaide Joints &amp; Pre-Rolls kopen</h1>'
-                '<p>%s</p>%s'
+                '<p>%s</p>%s%s'
                 '<p><a href="/shop">Bekijk het volledige assortiment &rarr;</a></p></section>') % (
-                    pre_intro, _product_links(_pre_items))
+                    pre_intro, _product_links(_pre_items), pre_faq_html)
     write_route("prerolls.html", pre_title, pre_desc, "/prerolls", pre_og,
-                [pre_collection, pre_itemlist, pre_bc],
+                [pre_collection, pre_itemlist, pre_faq_schema, pre_bc],
                 alts=[("nl", "/prerolls"), ("x-default", "/prerolls")], body=pre_body)
     urls.append(("/prerolls", TODAY, "0.9"))
 
 # Blog articles
 for b in BLOG:
     path = "/" + b["slug"]
-    title = "%s | WietStore Blog" % b["title"]
+    title = "%s | WietStore" % b["title"]
     img = SITE + b["img"]
     article = {"@context": "https://schema.org", "@type": "Article", "headline": b["title"],
                "image": img, "description": b["excerpt"],
@@ -412,7 +440,7 @@ for b in BLOG:
 for p in PRODUCTS:
     path = "/product/" + p["slug"]
     title = "%s kopen – €%.2f | WietStore" % (p["name"], p["price"])
-    desc = "%s online kopen bij WietStore. %s Discreet bezorgd in Nederland, België en Duitsland." % (p["name"], p["desc"])
+    desc = product_meta_desc(p)
     img = SITE + p["img"]
     # additionalProperty entries (THC, Smaak, Effect, Medicinaal) — surfaces structured attributes to Google.
     extras = []
