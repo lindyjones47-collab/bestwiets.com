@@ -356,6 +356,34 @@ write_route("de/cannabis-kaufen-deutschland.html",
             de_path, OG_DEFAULT, [de_bc], DE_LANDING_ALTS, lang="de", body=de_body)
 urls.append((de_path, TODAY, "0.9"))
 
+# Prerolls / voorgedraaide joints category landing page (/prerolls)
+_pre_items = [p for p in PRODUCTS if p.get("cat") == "Prerolls"]
+if _pre_items:
+    pre_title = "Voorgedraaide Joints & Pre-Rolls Kopen | Handgerold – WietStore"
+    pre_desc = ("Voorgedraaide joints en pre-rolls kopen bij WietStore. Handgerolde joints van "
+                "premium wiet — Amnesia, Lemon Haze, Gelato en meer. Discreet bezorgd in NL, België en Duitsland.")
+    pre_og = SITE + "/images/2026/07/preroll-power-pack-18-gram.jpg"
+    pre_bc = crumb([("Home", "/"), ("Pre-Rolls", "/prerolls")])
+    pre_collection = {"@context": "https://schema.org", "@type": "CollectionPage",
+                      "name": "Voorgedraaide Joints & Pre-Rolls", "url": SITE + "/prerolls",
+                      "description": pre_desc}
+    pre_itemlist = {"@context": "https://schema.org", "@type": "ItemList",
+                    "itemListElement": [{"@type": "ListItem", "position": i + 1,
+                                         "url": SITE + "/product/" + p["slug"], "name": p["name"]}
+                                        for i, p in enumerate(_pre_items)]}
+    pre_intro = ("Voorgedraaide joints kopen zonder zelf te rollen? Bij WietStore vind je handgerolde "
+                 "pre-rolls van premium toppen — van frisse Amnesia en Lemon Haze tot romige Gelato en "
+                 "krachtige indica's. Direct klaar voor gebruik en discreet, geurloos bezorgd in Nederland, "
+                 "België en Duitsland. Vanaf 10 gram krijg je automatisch 3% korting.")
+    pre_body = ('<section class="pr"><h1>Voorgedraaide Joints &amp; Pre-Rolls kopen</h1>'
+                '<p>%s</p>%s'
+                '<p><a href="/shop">Bekijk het volledige assortiment &rarr;</a></p></section>') % (
+                    pre_intro, _product_links(_pre_items))
+    write_route("prerolls.html", pre_title, pre_desc, "/prerolls", pre_og,
+                [pre_collection, pre_itemlist, pre_bc],
+                alts=[("nl", "/prerolls"), ("x-default", "/prerolls")], body=pre_body)
+    urls.append(("/prerolls", TODAY, "0.9"))
+
 # Blog articles
 for b in BLOG:
     path = "/" + b["slug"]
