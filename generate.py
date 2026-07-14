@@ -173,14 +173,23 @@ def render_product(p):
             specs.append("<li><strong>%s:</strong> %s</li>" % (label, esc(", ".join(v) if isinstance(v, list) else v)))
     specs_html = ('<ul class="pr-specs">%s</ul>' % "".join(specs)) if specs else ""
     avail = "Op voorraad" if p.get("stock") == "In stock" else "Tijdelijk uitverkocht"
+    variants_html = ""
+    price_prefix = ""
+    if p.get("variants"):
+        price_prefix = "vanaf "
+        _is_qty = "stuks" in p["variants"][0]["label"].lower()
+        lis = "".join("<li>%s &mdash; &euro;%.2f</li>" % (esc(v["label"]), v["price"]) for v in p["variants"])
+        variants_html = '<p><strong>%s:</strong></p><ul class="pr-specs">%s</ul>' % (
+            "Beschikbare aantallen" if _is_qty else "Beschikbare varianten", lis)
     return (
         '<article class="pr">'
         + _crumb_html([("Home", "/"), ("Shop", "/shop"), (p["name"], path)])
         + "<h1>%s kopen</h1>" % esc(p["name"])
         + '<img src="%s" alt="%s kopen" width="480" height="480" loading="eager">' % (esc(p["img"]), esc(p["name"]))
-        + '<p class="pr-price"><strong>&euro;%.2f</strong> &middot; %s &middot; %s</p>' % (p["price"], esc(p.get("cat", "")), avail)
+        + '<p class="pr-price"><strong>%s&euro;%.2f</strong> &middot; %s &middot; %s</p>' % (price_prefix, p["price"], esc(p.get("cat", "")), avail)
         + "<p>%s</p>" % esc(p["desc"])
         + specs_html
+        + variants_html
         + "<p>Vanaf 10 gram krijg je automatisch 3% korting. Discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland.</p>"
         + '<p><a href="/shop">Bekijk het volledige assortiment</a> &middot; <a href="/bestelhandleiding">Bestelhandleiding</a> &middot; <a href="/delivery">Bezorging &amp; verzending</a></p>'
         + "</article>"
@@ -415,11 +424,18 @@ for p in PRODUCTS:
         extras.append({"@type": "PropertyValue", "name": "Effect", "value": ", ".join(p["effects"])})
     if p.get("medicinal"):
         extras.append({"@type": "PropertyValue", "name": "Medicinaal", "value": ", ".join(p["medicinal"])})
+    _avail = "https://schema.org/InStock" if p["stock"] == "In stock" else "https://schema.org/OutOfStock"
+    if p.get("variants"):
+        _prices = [v["price"] for v in p["variants"]]
+        offers = {"@type": "AggregateOffer", "url": SITE + path, "priceCurrency": "EUR",
+                  "lowPrice": "%.2f" % min(_prices), "highPrice": "%.2f" % max(_prices),
+                  "offerCount": len(_prices), "availability": _avail}
+    else:
+        offers = {"@type": "Offer", "url": SITE + path, "price": "%.2f" % p["price"],
+                  "priceCurrency": "EUR", "availability": _avail}
     product = {"@context": "https://schema.org", "@type": "Product", "name": p["name"], "image": img,
                "description": p["desc"], "category": p["cat"], "brand": {"@type": "Brand", "name": "WietStore"},
-               "offers": {"@type": "Offer", "url": SITE + path, "price": "%.2f" % p["price"],
-                          "priceCurrency": "EUR",
-                          "availability": "https://schema.org/InStock" if p["stock"] == "In stock" else "https://schema.org/OutOfStock"}}
+               "offers": offers}
     if extras:
         product["additionalProperty"] = extras
     bc = crumb([("Home", "/"), ("Shop", "/shop"), (p["name"], path)])
