@@ -18,6 +18,7 @@ import json, os, re, datetime
 SITE = "https://bestwiets.com"
 OG_DEFAULT = SITE + "/images/2026/06/Tropicana-Cookies.png"
 TODAY = datetime.date.today().isoformat()
+PRICE_VALID_UNTIL = "%d-12-31" % (datetime.date.today().year + 1)  # keeps Product offers "fresh" for Google
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -457,13 +458,15 @@ for p in PRODUCTS:
         _prices = [v["price"] for v in p["variants"]]
         offers = {"@type": "AggregateOffer", "url": SITE + path, "priceCurrency": "EUR",
                   "lowPrice": "%.2f" % min(_prices), "highPrice": "%.2f" % max(_prices),
-                  "offerCount": len(_prices), "availability": _avail}
+                  "offerCount": len(_prices), "availability": _avail,
+                  "priceValidUntil": PRICE_VALID_UNTIL, "itemCondition": "https://schema.org/NewCondition"}
     else:
         offers = {"@type": "Offer", "url": SITE + path, "price": "%.2f" % p["price"],
-                  "priceCurrency": "EUR", "availability": _avail}
+                  "priceCurrency": "EUR", "availability": _avail,
+                  "priceValidUntil": PRICE_VALID_UNTIL, "itemCondition": "https://schema.org/NewCondition"}
     product = {"@context": "https://schema.org", "@type": "Product", "name": p["name"], "image": img,
-               "description": p["desc"], "category": p["cat"], "brand": {"@type": "Brand", "name": "WietStore"},
-               "offers": offers}
+               "description": p["desc"], "category": p["cat"], "sku": p["slug"],
+               "brand": {"@type": "Brand", "name": "WietStore"}, "offers": offers}
     if extras:
         product["additionalProperty"] = extras
     bc = crumb([("Home", "/"), ("Shop", "/shop"), (p["name"], path)])
