@@ -13,7 +13,7 @@ sitemap.xml.
 WORKFLOW: edit index.html (the template), then run `python generate.py`, then
 commit. index.html stays the single source of truth.
 """
-import json, os, re, datetime
+import json, os, re, datetime, hashlib
 
 SITE = "https://bestwiets.com"
 OG_DEFAULT = SITE + "/images/2026/06/Tropicana-Cookies.png"
@@ -22,6 +22,23 @@ PRICE_VALID_UNTIL = "%d-12-31" % (datetime.date.today().year + 1)  # keeps Produ
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+
+# Content-stable <lastmod>: a page's sitemap date only advances when ITS content
+# actually changes (not on every rebuild). Prevents "everything changed today"
+# from diluting the freshness signal Google uses for crawl scheduling.
+_LM_PATH = os.path.join(ROOT, ".sitemap-lastmod.json")
+try:
+    _LM_STORE = json.load(open(_LM_PATH, encoding="utf-8"))
+except Exception:
+    _LM_STORE = {}
+PAGE_LASTMOD = {}
+def _lastmod(path, *parts):
+    sig = hashlib.md5("|".join(parts).encode("utf-8")).hexdigest()
+    prev = _LM_STORE.get(path)
+    date = prev["d"] if (prev and prev.get("h") == sig) else TODAY
+    _LM_STORE[path] = {"h": sig, "d": date}
+    PAGE_LASTMOD[path] = date
+    return date
 
 def esc(s):
     return (str(s).replace("&", "&amp;").replace("<", "&lt;")
@@ -108,6 +125,8 @@ MARKER = re.compile(r"<!--SEO:START-->.*?<!--SEO:END-->", re.S)
 APP_MARKER = re.compile(r"<!--APP:START-->.*?<!--APP:END-->", re.S)
 
 def write_route(out_path, title, desc, path, og_image, jsonld, alts=None, lang="nl", body=""):
+    # record a content-stable lastmod (title+desc+body drive the freshness signal)
+    _lastmod(path, title, desc, body or "")
     block = "<!--SEO:START-->\n" + seo_block(title, desc, path, og_image, jsonld, alts) + "\n<!--SEO:END-->"
     html = MARKER.sub(lambda m: block, TEMPLATE)
     # Pre-render the route's real content into <main id="app"> so crawlers see it
@@ -473,13 +492,16 @@ for p in PRODUCTS:
     write_route("product/%s.html" % p["slug"], title, desc, path, img, [product, bc], body=render_product(p))
     urls.append((path, TODAY, "0.8"))
 
-# Sitemap
+# Sitemap — use content-stable lastmod per URL (only changes when the page changes)
 sm = ['<?xml version="1.0" encoding="UTF-8"?>',
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for path, lastmod, prio in urls:
+    lastmod = PAGE_LASTMOD.get(path, lastmod)
     sm.append("  <url><loc>%s%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>" % (SITE, path, lastmod, prio))
 sm.append("</urlset>")
 open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write("\n".join(sm))
+# persist the lastmod manifest so unchanged pages keep their date on the next build
+json.dump(_LM_STORE, open(_LM_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=0, sort_keys=True)
 
 print("Generated %d pages + %d articles + %d products = %d routes" % (
     len(PAGES), len(BLOG), len(PRODUCTS), len(urls)))
