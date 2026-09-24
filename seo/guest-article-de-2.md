@@ -56,6 +56,12 @@ Cannabis verliert mit der Zeit Aroma, Feuchtigkeit und Wirkstoffgehalt, wenn es 
 
 Richtig gelagert bleiben vorgerollte Joints mehrere Monate genießbar — am intensivsten sind Aroma und Frische aber in den ersten Wochen.
 
+## Einzeln oder im Vorteilspaket?
+
+Pre-Rolls gibt es meist einzeln oder in Mehrpackungen — häufig in Größen wie 3, 12 oder 30 Stück. Für den Einstieg ist die kleine Packung ideal: Du probierst eine Sorte, ohne dich festzulegen. Wer eine Lieblingssorte gefunden hat oder verschiedene Geschmäcker vergleichen möchte, fährt mit einem größeren Paket oft günstiger pro Stück.
+
+Ein praktischer Tipp: Achte weniger auf den Gesamtpreis als auf den **Preis pro Gramm oder pro Joint**. So vergleichst du Angebote fair — gerade wenn Packungsgrößen und Joint-Gewichte zwischen Anbietern schwanken. Manche Shops bieten zudem gemischte Pakete an, mit denen du mehrere Sorten in einem Rutsch testen kannst.
+
 ## Verantwortungsvoll genießen
 
 Wenn du eine Sorte noch nicht kennst: **fang klein an und warte die Wirkung ab**, bevor du nachlegst. Bewahre alles außerhalb der Reichweite von Kindern und Haustieren auf. Und informiere dich vor jeder Bestellung über die **in deinem Land geltende Rechtslage** — sie ist je nach Land unterschiedlich und ändert sich laufend.

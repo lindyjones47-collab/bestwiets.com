@@ -55,6 +55,12 @@ Le plus grand risque n'est souvent pas juridique : c'est la **qualité et le sé
 
 Un dernier point : ne communique jamais plus de données personnelles que nécessaire, et sois prudent avec tout vendeur qui pousse vers des moyens de paiement inhabituels.
 
+## Erreur bonus : se fier aveuglément aux avis
+
+Les avis clients peuvent aider, mais ils se manipulent facilement. Une page remplie uniquement de commentaires cinq étoiles, sans la moindre nuance, est souvent moins crédible qu'une page avec quelques retours mitigés et des réponses honnêtes du vendeur. Cherche des détails concrets — variété, délai, emballage — plutôt que des superlatifs vagues.
+
+Le meilleur « avis » reste ta propre vérification : des informations produit claires, un contact réel et un paiement transparent en disent plus long que dix étoiles anonymes. Recoupe si possible plusieurs sources avant une première commande.
+
 ## Conclusion
 
 Acheter du cannabis en ligne peut être pratique — à condition de ne pas confondre facilité et négligence. Fais les choses ennuyeuses mais sensées : renseigne-toi sur la loi, comprends ce que tu achètes, privilégie les vendeurs transparents aux vendeurs bruyants, et commence par de petites doses. Tu prendras alors une décision éclairée plutôt qu'un pari.

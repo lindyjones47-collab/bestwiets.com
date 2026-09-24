@@ -55,6 +55,12 @@ Sieh das als Startpunkt, nicht als Versprechen: Deine eigene Erfahrung, Tagesfor
 3. **Transparenz des Anbieters prüfen.** Wer zu jeder Sorte klare Angaben macht, hilft dir bei einer informierten Wahl. Ein Beispiel für dieses Maß an Transparenz sind etablierte niederländische Anbieter wie [WietStore](https://bestwiets.com/de/cannabis-kaufen-deutschland), die zu jeder Sorte THC-Bereich, Geschmack und Wirkung angeben.
 4. **Klein starten.** Gerade bei einer neuen Sorte gilt: niedrig dosiert beginnen und die Wirkung abwarten, bevor du nachlegst.
 
+## Und was ist mit CBD-lastigen Sorten?
+
+Neben der Indica/Sativa-Frage lohnt ein Blick auf **CBD-betonte Sorten**. CBD (Cannabidiol) ist nicht berauschend und wird von vielen als ausgleichend beschrieben. Sorten mit einem höheren CBD-Anteil im Verhältnis zu THC fühlen sich für manche Menschen klarer und weniger intensiv an — eine Option für alle, die einen kräftigen Rausch bewusst vermeiden möchten.
+
+Auch hier gilt: Das Etikett allein sagt wenig. Entscheidend ist das angegebene **Verhältnis von THC zu CBD**. Ein seriöser Anbieter macht diese Angabe transparent, statt pauschal „mild" oder „stark" zu schreiben. Wer neu ist, tastet sich mit einem ausgewogeneren Profil oft angenehmer heran als mit einer THC-Bombe.
+
 ## Verantwortungsvoll dosieren
 
 Die Toleranz ist von Mensch zu Mensch sehr unterschiedlich. Beginne niedrig, warte die volle Wirkung ab, und bewahre Produkte kühl, dunkel und außerhalb der Reichweite von Kindern und Haustieren auf. Informiere dich außerdem über die **in deinem Land geltende Rechtslage**, bevor du bestellst — sie unterscheidet sich je nach Land und ändert sich laufend.
