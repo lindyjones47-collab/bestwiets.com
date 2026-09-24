@@ -317,6 +317,20 @@ PAGE_CONTENT = {
     },
 }
 
+# Crawlable country links (homepage + landing pages link to every market — DACH + FR focus)
+COUNTRY_LINKS = [
+    ("/de/cannabis-kaufen-deutschland", "Deutschland"),
+    ("/cannabis-kaufen-oesterreich", "Österreich"),
+    ("/cannabis-kaufen-schweiz", "Schweiz"),
+    ("/acheter-cannabis-france", "France"),
+    ("/be", "België"),
+]
+def _country_links(lang="nl"):
+    lbl = {"nl": "Wij bezorgen in", "de": "Wir liefern nach", "en": "We deliver to",
+           "fr": "Nous livrons en"}.get(lang, "Wij bezorgen in")
+    lis = " &middot; ".join('<a href="%s">%s</a>' % (u, esc(n)) for u, n in COUNTRY_LINKS)
+    return '<p class="pr-countries"><strong>%s:</strong> %s</p>' % (lbl, lis)
+
 def page_body(key, lang="nl"):
     h1, paras = PAGE_CONTENT[lang][key]
     html = '<section class="pr"><h1>%s</h1>' % h1
@@ -329,6 +343,7 @@ def page_body(key, lang="nl"):
         html += _product_links(limit=12)
         html += '<p><a href="/shop">Alle producten &rarr;</a></p>' if lang == "nl" else (
             '<p><a href="/en/shop">All products &rarr;</a></p>' if lang == "en" else '<p><a href="/de/shop">Alle Produkte &rarr;</a></p>')
+        html += _country_links(lang)
     html += "</section>"
     return html
 
@@ -392,6 +407,41 @@ write_route("de/cannabis-kaufen-deutschland.html",
             "Cannabis online kaufen und nach Deutschland liefern lassen. Premium Weed, Haschisch und Cali Weed in Coffeeshop-Qualität, diskret in 2–4 Werktagen geliefert.",
             de_path, OG_DEFAULT, [de_bc], DE_LANDING_ALTS, lang="de", body=de_body)
 urls.append((de_path, TODAY, "0.9"))
+
+# Austria / Switzerland / France country landing pages (DACH + FR ranking focus)
+EXTRA_LANDINGS = [
+    {"slug": "cannabis-kaufen-oesterreich", "lang": "de", "hl": "de-AT", "home": "Startseite",
+     "crumb": "Cannabis kaufen Österreich",
+     "title": "Cannabis kaufen in Österreich | Diskrete Lieferung – WietStore",
+     "desc": "Cannabis online kaufen und nach Österreich liefern lassen. Premium Weed, Haschisch und vorgerollte Joints in Amsterdamer Coffeeshop-Qualität, diskret in wenigen Werktagen.",
+     "h1": "Cannabis kaufen in Österreich",
+     "lead": "Cannabis online kaufen und diskret nach Österreich liefern lassen. WietStore bietet Premium-Weed, Haschisch, Cali Weed und vorgerollte Joints in Amsterdamer Coffeeshop-Qualit&auml;t, geruchsneutral verpackt. Bezahlung per Bank&uuml;berweisung, Bitcoin oder USDT.",
+     "cta": ("/shop", "Zum gesamten Sortiment &rarr;")},
+    {"slug": "cannabis-kaufen-schweiz", "lang": "de", "hl": "de-CH", "home": "Startseite",
+     "crumb": "Cannabis kaufen Schweiz",
+     "title": "Cannabis kaufen in der Schweiz | Diskrete Lieferung – WietStore",
+     "desc": "Cannabis online kaufen und in die Schweiz liefern lassen. Premium Weed, Haschisch und vorgerollte Joints in Amsterdamer Coffeeshop-Qualität, diskret und geruchsneutral verpackt.",
+     "h1": "Cannabis kaufen in der Schweiz",
+     "lead": "Cannabis online kaufen und diskret in die Schweiz liefern lassen. WietStore bietet Premium-Weed, Haschisch, Cali Weed und vorgerollte Joints in Amsterdamer Coffeeshop-Qualit&auml;t, geruchsneutral verpackt. Bezahlung per Bank&uuml;berweisung, Bitcoin oder USDT.",
+     "cta": ("/shop", "Zum gesamten Sortiment &rarr;")},
+    {"slug": "acheter-cannabis-france", "lang": "fr", "hl": "fr-FR", "home": "Accueil",
+     "crumb": "Acheter du cannabis en France",
+     "title": "Acheter du Cannabis en France | Livraison Discrète – WietStore",
+     "desc": "Acheter du cannabis en ligne et se faire livrer en France : weed, haschich et pré-roulés premium de qualité coffeeshop d'Amsterdam, livrés discrètement.",
+     "h1": "Acheter du cannabis en France",
+     "lead": "Acheter du cannabis en ligne et se faire livrer discr&egrave;tement en France. WietStore propose du weed, du haschich, du cali weed et des joints pr&eacute;-roul&eacute;s de qualit&eacute; coffeeshop d'Amsterdam, emball&eacute;s sans odeur. Paiement par virement, Bitcoin ou USDT.",
+     "cta": ("/shop", "Voir tout l'assortiment &rarr;")},
+]
+for L in EXTRA_LANDINGS:
+    path = "/" + L["slug"]
+    bc = crumb([(L["home"], "/"), (L["crumb"], path)])
+    alts = [(L["hl"], path), ("x-default", "/")]
+    body = ('<section class="pr"><h1>%s</h1><p>%s</p>%s%s<p><a href="%s">%s</a></p></section>') % (
+        esc(L["h1"]), L["lead"], _product_links(limit=16), _country_links(L["lang"]),
+        L["cta"][0], L["cta"][1])
+    write_route("%s.html" % L["slug"], L["title"], L["desc"], path, OG_DEFAULT, [bc], alts,
+                lang=L["lang"], body=body)
+    urls.append((path, TODAY, "0.9"))
 
 # Prerolls / voorgedraaide joints category landing page (/prerolls)
 _pre_items = [p for p in PRODUCTS if p.get("cat") == "Prerolls"]
