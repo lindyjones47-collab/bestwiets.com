@@ -60,6 +60,92 @@ def extract_array(html, name):
 
 PRODUCTS = extract_array(TEMPLATE, "PRODUCTS")
 BLOG = extract_array(TEMPLATE, "BLOG")
+CITY = extract_array(TEMPLATE, "CITY")
+
+# ---- City local-SEO landing pages (DE/AT/CH/FR) ----
+CITY_COUNTRY = {
+ "de": {"name": "Deutschland", "gpath": "/de/cannabis-kaufen-deutschland", "hl": "de-DE", "verb": "Weed", "home": "Startseite", "lang": "de"},
+ "at": {"name": "Österreich", "gpath": "/cannabis-kaufen-oesterreich", "hl": "de-AT", "verb": "Cannabis", "home": "Startseite", "lang": "de"},
+ "ch": {"name": "Schweiz", "gpath": "/cannabis-kaufen-schweiz", "hl": "de-CH", "verb": "Cannabis", "home": "Startseite", "lang": "de"},
+ "fr": {"name": "France", "gpath": "/acheter-cannabis-france", "hl": "fr-FR", "verb": "cannabis", "home": "Accueil", "lang": "fr"},
+}
+def _city_links(country_key):
+    items = [c for c in CITY if c["c"] == country_key]
+    if not items:
+        return ""
+    lis = "".join('<li><a href="/%s">%s</a></li>' % (esc(c["s"]), esc(c["n"])) for c in items)
+    return '<h2>%s</h2><ul class="pr-list">%s</ul>' % ("Villes de livraison" if country_key == "fr" else "Lieferstädte", lis)
+def _city_nearby(c):
+    same = [x for x in CITY if x["c"] == c["c"]]
+    if len(same) < 2:
+        return []
+    pos = next(i for i, x in enumerate(same) if x["s"] == c["s"])
+    out, k = [], 1
+    while len(out) < min(4, len(same) - 1) and k <= len(same):
+        x = same[(pos + k) % len(same)]
+        if x["s"] != c["s"] and x not in out:
+            out.append(x)
+        k += 1
+    return out
+def city_meta(c):
+    CC = CITY_COUNTRY[c["c"]]
+    if c["c"] == "fr":
+        return ("Acheter du cannabis à %s | WietStore" % c["n"],
+                "Acheter du cannabis en ligne et se faire livrer à %s (%s). Weed, haschich & pré-roulés premium, livraison discrète." % (c["n"], c["r"]))
+    return ("%s kaufen in %s | WietStore" % (CC["verb"], c["n"]),
+            "%s online kaufen und nach %s (%s) liefern lassen. Premium Cannabis, Haschisch & Pre-Rolls, diskret in wenigen Werktagen." % (CC["verb"], c["n"], c["r"]))
+def _city_featured(c):
+    pre = [p for p in PRODUCTS if p.get("cat") == "Prerolls"]
+    idx = CITY.index(c)
+    return [pre[(idx + k) % len(pre)] for k in range(3)] if pre else []
+def city_body(c):
+    CC = CITY_COUNTRY[c["c"]]
+    city, region = esc(c["n"]), esc(c["r"])
+    featlinks = ", ".join('<a href="/product/%s">%s</a>' % (esc(p["slug"]), esc(p["name"])) for p in _city_featured(c))
+    nb = " &middot; ".join('<a href="/%s">%s</a>' % (esc(x["s"]), esc(x["n"])) for x in _city_nearby(c))
+    if c["c"] == "fr":
+        return (
+            '<section class="pr"><h1>Acheter du cannabis à %s</h1>'
+            '<p>Acheter du cannabis à %s et se faire livrer discrètement ? Chez WietStore, commandez en ligne du weed, du haschich et des joints pré-roulés de qualité coffeeshop d\'Amsterdam — livrés à %s et dans toute la région %s.</p>'
+            '<h2>Commander à %s</h2><p>Choisissez vos variétés dans la boutique, ajoutez-les au panier et indiquez votre adresse à %s. Payez par virement, Bitcoin ou USDT ; dès réception du paiement, la commande est expédiée.</p>'
+            '<h2>Livraison à %s et en %s</h2><p>Les envois depuis les Pays-Bas atteignent %s généralement en quelques jours ouvrés. Chaque colis est emballé hermétiquement et sans odeur.</p>'
+            '<h2>Populaire à %s</h2><p>Parmi les favoris : %s. Découvrez aussi tous nos <a href="/prerolls">joints pré-roulés</a> ou <a href="%s">notre offre en France</a>.</p>'
+            '<h2>Questions fréquentes</h2>'
+            '<h3>Livrez-vous à %s ?</h3><p>Oui, nous livrons discrètement et sans odeur à %s et dans toute la région %s, généralement en quelques jours ouvrés.</p>'
+            '<h3>Comment payer ma commande à %s ?</h3><p>Vous payez en toute sécurité par virement, Bitcoin ou USDT. La commande est expédiée dès réception du paiement.</p>'
+            '<p><strong>À proximité :</strong> %s</p>'
+            '<p><a href="/shop">Voir tout l\'assortiment &rarr;</a></p>'
+            '<p style="color:#6f6f68;font-size:.85rem;">Réservé aux adultes de 18 ans et plus. Respectez la législation en vigueur et consommez de manière responsable.</p></section>'
+        ) % (city, city, city, region, city, city, city, region, city, city, featlinks, CC["gpath"], city, city, region, city, nb)
+    verb = CC["verb"]
+    return (
+        '<section class="pr"><h1>%s kaufen in %s</h1>'
+        '<p>%s nach %s bestellen und diskret liefern lassen? Bei WietStore bestellst du online Cannabis, Haschisch und vorgerollte Joints in Amsterdamer Coffeeshop-Qualität — zuverlässig geliefert nach %s und in ganz %s.</p>'
+        '<h2>So bestellst du nach %s</h2><p>Wähle deine Sorten im Shop, lege sie in den Warenkorb und gib an der Kasse deine Lieferadresse in %s ein. Bezahle per Banküberweisung, Bitcoin oder USDT; nach Zahlungseingang wird deine Bestellung versandt.</p>'
+        '<h2>Lieferung nach %s und %s</h2><p>Sendungen aus den Niederlanden erreichen %s in der Regel innerhalb weniger Werktage. Jede Lieferung wird luftdicht und geruchsneutral verpackt — von außen ist nicht erkennbar, was im Paket ist.</p>'
+        '<h2>Beliebt in %s</h2><p>Besonders gefragt: %s. Entdecke auch alle <a href="/prerolls">vorgerollten Joints</a> oder das gesamte <a href="%s">%s-Sortiment</a>.</p>'
+        '<h2>Häufige Fragen</h2>'
+        '<h3>Liefert WietStore nach %s?</h3><p>Ja, wir liefern diskret und geruchsneutral nach %s und in die gesamte Region %s, in der Regel innerhalb weniger Werktage.</p>'
+        '<h3>Wie bezahle ich meine Bestellung nach %s?</h3><p>Du bezahlst sicher per Banküberweisung, Bitcoin oder USDT. Nach Zahlungseingang wird deine Bestellung versandt.</p>'
+        '<p><strong>Auch in der Nähe:</strong> %s</p>'
+        '<p><a href="/shop">Komplettes Sortiment ansehen &rarr;</a></p>'
+        '<p style="color:#6f6f68;font-size:.85rem;">Nur für Erwachsene ab 18 Jahren. Bitte beachte die geltenden Gesetze und konsumiere verantwortungsbewusst.</p></section>'
+    ) % (verb, city, verb, city, city, region, city, city, city, region, city, city, featlinks, CC["gpath"], CC["name"], city, city, region, city, nb)
+def city_jsonld(c, path):
+    CC = CITY_COUNTRY[c["c"]]
+    if c["c"] == "fr":
+        faq = [("Livrez-vous à %s ?" % c["n"], "Oui, nous livrons discrètement et sans odeur à %s et dans toute la région %s, généralement en quelques jours ouvrés." % (c["n"], c["r"])),
+               ("Comment payer ma commande à %s ?" % c["n"], "Vous payez en toute sécurité par virement, Bitcoin ou USDT. La commande est expédiée dès réception du paiement.")]
+    else:
+        faq = [("Liefert WietStore nach %s?" % c["n"], "Ja, wir liefern diskret und geruchsneutral nach %s und in die gesamte Region %s, in der Regel innerhalb weniger Werktage." % (c["n"], c["r"])),
+               ("Wie bezahle ich meine Bestellung nach %s?" % c["n"], "Du bezahlst sicher per Banküberweisung, Bitcoin oder USDT. Nach Zahlungseingang wird deine Bestellung versandt.")]
+    service = {"@context": "https://schema.org", "@type": "Service", "serviceType": "Cannabis delivery",
+               "provider": {"@type": "Organization", "name": "WietStore", "url": SITE},
+               "areaServed": {"@type": "City", "name": c["n"]}, "url": SITE + path}
+    faq_schema = {"@context": "https://schema.org", "@type": "FAQPage",
+                  "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+    bc = crumb([(CC["home"], "/"), (CC["name"], CC["gpath"]), (c["n"], path)])
+    return [service, faq_schema, bc]
 
 # Page meta (kept in sync with _PAGE_SEO in index.html)
 PAGES = {
@@ -401,7 +487,7 @@ de_bc = crumb([("Startseite", "/de/"), ("Cannabis kaufen Deutschland", de_path)]
 de_body = country_body(
     "Cannabis kaufen in Deutschland",
     "Cannabis online kaufen und diskret nach Deutschland liefern lassen. WietStore bietet Premium-Weed, Haschisch und Cali Weed in Amsterdamer Coffeeshop-Qualit&auml;t, geruchsneutral verpackt und in der Regel innerhalb von 2&ndash;4 Werktagen geliefert. Bezahlung per Bank&uuml;berweisung, Bitcoin oder USDT.",
-    "/de/shop", "Zum gesamten Sortiment &rarr;")
+    "/de/shop", "Zum gesamten Sortiment &rarr;") + '<section class="pr">' + _city_links("de") + '</section>'
 write_route("de/cannabis-kaufen-deutschland.html",
             "Cannabis kaufen in Deutschland | Diskreter Versand – WietStore",
             "Cannabis online kaufen und nach Deutschland liefern lassen. Premium Weed, Haschisch und Cali Weed in Coffeeshop-Qualität, diskret in 2–4 Werktagen geliefert.",
@@ -432,16 +518,28 @@ EXTRA_LANDINGS = [
      "lead": "Acheter du cannabis en ligne et se faire livrer discr&egrave;tement en France. WietStore propose du weed, du haschich, du cali weed et des joints pr&eacute;-roul&eacute;s de qualit&eacute; coffeeshop d'Amsterdam, emball&eacute;s sans odeur. Paiement par virement, Bitcoin ou USDT.",
      "cta": ("/shop", "Voir tout l'assortiment &rarr;")},
 ]
+_LAND_CK = {"de-AT": "at", "de-CH": "ch", "fr-FR": "fr"}
 for L in EXTRA_LANDINGS:
     path = "/" + L["slug"]
     bc = crumb([(L["home"], "/"), (L["crumb"], path)])
     alts = [(L["hl"], path), ("x-default", "/")]
+    _ck = _LAND_CK[L["hl"]]
     body = ('<section class="pr"><h1>%s</h1><p>%s</p>%s%s<p><a href="%s">%s</a></p></section>') % (
         esc(L["h1"]), L["lead"], _product_links(limit=16), _country_links(L["lang"]),
         L["cta"][0], L["cta"][1])
+    body += '<section class="pr">' + _city_links(_ck) + '</section>'
     write_route("%s.html" % L["slug"], L["title"], L["desc"], path, OG_DEFAULT, [bc], alts,
                 lang=L["lang"], body=body)
     urls.append((path, TODAY, "0.9"))
+
+# City local-SEO landing pages (Home -> Country -> City crawl path; fixes discoverability)
+for c in CITY:
+    cc = CITY_COUNTRY[c["c"]]
+    cpath = "/" + c["s"]
+    ctitle, cdesc = city_meta(c)
+    write_route("%s.html" % c["s"], ctitle, cdesc, cpath, OG_DEFAULT, city_jsonld(c, cpath),
+                [(cc["hl"], cpath), ("x-default", cpath)], lang=cc["lang"], body=city_body(c))
+    urls.append((cpath, TODAY, "0.7"))
 
 # Prerolls / voorgedraaide joints category landing page (/prerolls)
 _pre_items = [p for p in PRODUCTS if p.get("cat") == "Prerolls"]
