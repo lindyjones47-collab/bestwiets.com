@@ -13,7 +13,7 @@ sitemap.xml.
 WORKFLOW: edit index.html (the template), then run `python generate.py`, then
 commit. index.html stays the single source of truth.
 """
-import json, os, re, datetime, hashlib
+import json, math, os, re, datetime, hashlib
 
 SITE = "https://bestwiets.com"
 OG_DEFAULT = SITE + "/images/2026/06/Tropicana-Cookies.png"
@@ -61,6 +61,17 @@ def extract_array(html, name):
 PRODUCTS = extract_array(TEMPLATE, "PRODUCTS")
 BLOG = extract_array(TEMPLATE, "BLOG")
 CITY = extract_array(TEMPLATE, "CITY")
+WEIGHT_LADDER = extract_array(TEMPLATE, "WEIGHT_LADDER")
+def _jsround(x):  # same result as JS Math.round(x*100)/100 in index.html
+    return math.floor(x * 100 + 0.5) / 100
+for _p in PRODUCTS:  # mirrors the hydration in index.html
+    if _p.get("ppg"):
+        _p["variants"] = []
+        for _w in WEIGHT_LADDER:
+            _pg = _jsround(_p["ppg"] * (1 - _w["off"]))
+            _p["variants"].append({"label": "%d g" % _w["g"], "g": _w["g"], "pg": _pg,
+                                   "price": _jsround(_pg * _w["g"]), "sku": "-%dG" % _w["g"]})
+        _p["price"] = _p["variants"][0]["price"]
 
 # ---- City local-SEO landing pages (DE/AT/CH/FR) ----
 CITY_COUNTRY = {
@@ -271,7 +282,7 @@ def _product_links(items=None, limit=None):
     if limit:
         items = items[:limit]
     return '<ul class="pr-list">%s</ul>' % "".join(
-        '<li><a href="/product/%s">%s kopen</a> &mdash; &euro;%.2f</li>' % (esc(p["slug"]), esc(p["name"]), p["price"])
+        '<li><a href="/product/%s">%s kopen</a> &mdash; %s&euro;%.2f</li>' % (esc(p["slug"]), esc(p["name"]), "vanaf " if p.get("variants") else "", p["price"])
         for p in items)
 
 def _article_links():
@@ -292,9 +303,9 @@ def render_product(p):
     if p.get("variants"):
         price_prefix = "vanaf "
         _is_qty = "stuks" in p["variants"][0]["label"].lower()
-        lis = "".join("<li>%s &mdash; &euro;%.2f</li>" % (esc(v["label"]), v["price"]) for v in p["variants"])
+        lis = "".join("<li>%s &mdash; &euro;%.2f%s</li>" % (esc(v["label"]), v["price"], " (&euro;%.2f/g)" % v["pg"] if v.get("pg") else "") for v in p["variants"])
         variants_html = '<p><strong>%s:</strong></p><ul class="pr-specs">%s</ul>' % (
-            "Beschikbare aantallen" if _is_qty else "Beschikbare varianten", lis)
+            "Beschikbare gewichten" if p.get("ppg") else ("Beschikbare aantallen" if _is_qty else "Beschikbare varianten"), lis)
     return (
         '<article class="pr">'
         + _crumb_html([("Home", "/"), ("Shop", "/shop"), (p["name"], path)])
@@ -304,7 +315,7 @@ def render_product(p):
         + "<p>%s</p>" % esc(p["desc"])
         + specs_html
         + variants_html
-        + "<p>Vanaf 10 gram krijg je automatisch 3% korting. Discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland.</p>"
+        + ("<p>Hoe meer je bestelt, hoe lager de prijs per gram. " if p.get("ppg") else "<p>") + "Discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland.</p>"
         + '<p><a href="/shop">Bekijk het volledige assortiment</a> &middot; <a href="/bestelhandleiding">Bestelhandleiding</a> &middot; <a href="/delivery">Bezorging &amp; verzending</a></p>'
         + "</article>"
     )
@@ -334,7 +345,7 @@ PAGE_CONTENT = {
             "Betaal eenvoudig via bankoverschrijving, Bitcoin of USDT. Bekijk het volledige aanbod in de <a href=\"/shop\">shop</a>, lees meer over onze <a href=\"/delivery\">discrete bezorging</a> of raadpleeg de <a href=\"/bestelhandleiding\">bestelhandleiding</a>.",
             "Populaire producten:"]),
         "shop": ("Wiet, hasj &amp; cali weed kopen", [
-            "Bekijk het volledige assortiment van WietStore: <strong>wiet, hasj, cali weed, gruis en wietolie</strong>. Alle producten worden discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland. Vanaf 10 gram ontvang je automatisch 3% korting.",
+            "Bekijk het volledige assortiment van WietStore: <strong>wiet, hasj, cali weed, gruis en wietolie</strong>. Alle producten worden discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland. Kies uit 15 tot 100 gram: hoe meer je bestelt, hoe lager de prijs per gram.",
             "Klik op een product voor de volledige beschrijving, THC-gehalte, smaak en effect:"]),
         "blog": ("Blog &ndash; wiet &amp; cannabis gidsen", [
             "Lees onze gidsen en nieuws over <strong>wiet kopen, hasj, bezorging en betalen met crypto</strong>. Praktische informatie voor iedereen die veilig en discreet cannabis online wil bestellen.",
@@ -369,7 +380,7 @@ PAGE_CONTENT = {
             "Pay easily by bank transfer, Bitcoin or USDT. Browse the full range in the <a href=\"/en/shop\">shop</a> or read about our <a href=\"/en/delivery\">discreet delivery</a>.",
             "Popular products:"]),
         "shop": ("Buy weed, hash &amp; cali weed", [
-            "Browse WietStore's full range: <strong>weed, hash, cali weed, grit and cannabis oil</strong>. Everything is delivered discreetly and odourlessly across the Netherlands, Belgium and Germany. From 10 grams you automatically get a 3% discount.",
+            "Browse WietStore's full range: <strong>weed, hash, cali weed, grit and cannabis oil</strong>. Everything is delivered discreetly and odourlessly across the Netherlands, Belgium and Germany. Choose from 15 to 100 grams: the more you order, the lower the price per gram.",
             "Click a product for the full description, THC level, flavour and effect:"]),
         "delivery": ("Delivery &amp; shipping", [
             "WietStore delivers <strong>discreetly and odourlessly</strong> across the Netherlands, Belgium, Germany and France. Orders within the Netherlands often arrive within 24 hours; delivery to Belgium and Germany usually takes 2&ndash;4 working days.",
@@ -388,7 +399,7 @@ PAGE_CONTENT = {
             "Bezahle bequem per Bank&uuml;berweisung, Bitcoin oder USDT. Entdecke das gesamte Sortiment im <a href=\"/de/shop\">Shop</a> oder lies mehr &uuml;ber unsere <a href=\"/de/delivery\">diskrete Lieferung</a>.",
             "Beliebte Produkte:"]),
         "shop": ("Gras, Haschisch &amp; Cali Weed kaufen", [
-            "Entdecke das gesamte Sortiment von WietStore: <strong>Gras, Haschisch, Cali Weed, Gruis und &Ouml;l</strong>. Alles wird diskret und geruchsneutral in die Niederlande, nach Belgien und Deutschland geliefert. Ab 10 Gramm erh&auml;ltst du automatisch 3% Rabatt.",
+            "Entdecke das gesamte Sortiment von WietStore: <strong>Gras, Haschisch, Cali Weed, Gruis und &Ouml;l</strong>. Alles wird diskret und geruchsneutral in die Niederlande, nach Belgien und Deutschland geliefert. W&auml;hle 15 bis 100 Gramm: je mehr du bestellst, desto niedriger der Preis pro Gramm.",
             "Klicke auf ein Produkt f&uuml;r die vollst&auml;ndige Beschreibung, THC-Gehalt, Geschmack und Wirkung:"]),
         "delivery": ("Lieferung &amp; Versand", [
             "WietStore liefert <strong>diskret und geruchsneutral</strong> in die Niederlande, nach Belgien, Deutschland und Frankreich. Lieferungen nach Deutschland dauern in der Regel 2&ndash;4 Werktage.",
@@ -579,7 +590,7 @@ if _pre_items:
     pre_intro = ("Voorgedraaide joints kopen zonder zelf te rollen? Bij WietStore vind je handgerolde "
                  "pre-rolls van premium toppen — van frisse Amnesia en Lemon Haze tot romige Gelato en "
                  "krachtige indica's. Direct klaar voor gebruik en discreet, geurloos bezorgd in Nederland, "
-                 "België en Duitsland. Vanaf 10 gram krijg je automatisch 3% korting.")
+                 "België en Duitsland.")
     pre_body = ('<section class="pr"><h1>Voorgedraaide Joints &amp; Pre-Rolls kopen</h1>'
                 '<p>%s</p>%s%s'
                 '<p><a href="/shop">Bekijk het volledige assortiment &rarr;</a></p></section>') % (
@@ -607,7 +618,7 @@ for b in BLOG:
 # Products
 for p in PRODUCTS:
     path = "/product/" + p["slug"]
-    title = "%s kopen – €%.2f | WietStore" % (p["name"], p["price"])
+    title = "%s kopen – %s€%.2f | WietStore" % (p["name"], "vanaf " if p.get("variants") else "", p["price"])
     desc = product_meta_desc(p)
     img = SITE + p["img"]
     # additionalProperty entries (THC, Smaak, Effect, Medicinaal) — surfaces structured attributes to Google.
