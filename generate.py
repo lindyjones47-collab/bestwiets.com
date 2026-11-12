@@ -315,7 +315,7 @@ def render_product(p):
         + "<p>%s</p>" % esc(p["desc"])
         + specs_html
         + variants_html
-        + ("<p>Hoe meer je bestelt, hoe lager de prijs per gram. " if p.get("ppg") else "<p>") + "Discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland.</p>"
+        + ("<p>Verkrijgbaar van 3 tot 100 gram. " if p.get("ppg") else "<p>") + "Discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland.</p>"
         + '<p><a href="/shop">Bekijk het volledige assortiment</a> &middot; <a href="/bestelhandleiding">Bestelhandleiding</a> &middot; <a href="/delivery">Bezorging &amp; verzending</a></p>'
         + "</article>"
     )
@@ -345,7 +345,7 @@ PAGE_CONTENT = {
             "Betaal eenvoudig via bankoverschrijving, Bitcoin of USDT. Bekijk het volledige aanbod in de <a href=\"/shop\">shop</a>, lees meer over onze <a href=\"/delivery\">discrete bezorging</a> of raadpleeg de <a href=\"/bestelhandleiding\">bestelhandleiding</a>.",
             "Populaire producten:"]),
         "shop": ("Wiet, hasj &amp; cali weed kopen", [
-            "Bekijk het volledige assortiment van WietStore: <strong>wiet, hasj, cali weed, gruis en wietolie</strong>. Alle producten worden discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland. Kies uit 15 tot 100 gram: hoe meer je bestelt, hoe lager de prijs per gram.",
+            "Bekijk het volledige assortiment van WietStore: <strong>wiet, hasj, cali weed, gruis en wietolie</strong>. Alle producten worden discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland. Kies je gewicht van 3 tot 100 gram.",
             "Klik op een product voor de volledige beschrijving, THC-gehalte, smaak en effect:"]),
         "blog": ("Blog &ndash; wiet &amp; cannabis gidsen", [
             "Lees onze gidsen en nieuws over <strong>wiet kopen, hasj, bezorging en betalen met crypto</strong>. Praktische informatie voor iedereen die veilig en discreet cannabis online wil bestellen.",
@@ -380,7 +380,7 @@ PAGE_CONTENT = {
             "Pay easily by bank transfer, Bitcoin or USDT. Browse the full range in the <a href=\"/en/shop\">shop</a> or read about our <a href=\"/en/delivery\">discreet delivery</a>.",
             "Popular products:"]),
         "shop": ("Buy weed, hash &amp; cali weed", [
-            "Browse WietStore's full range: <strong>weed, hash, cali weed, grit and cannabis oil</strong>. Everything is delivered discreetly and odourlessly across the Netherlands, Belgium and Germany. Choose from 15 to 100 grams: the more you order, the lower the price per gram.",
+            "Browse WietStore's full range: <strong>weed, hash, cali weed, grit and cannabis oil</strong>. Everything is delivered discreetly and odourlessly across the Netherlands, Belgium and Germany. Choose your weight from 3 to 100 grams.",
             "Click a product for the full description, THC level, flavour and effect:"]),
         "delivery": ("Delivery &amp; shipping", [
             "WietStore delivers <strong>discreetly and odourlessly</strong> across the Netherlands, Belgium, Germany and France. Orders within the Netherlands often arrive within 24 hours; delivery to Belgium and Germany usually takes 2&ndash;4 working days.",
@@ -399,7 +399,7 @@ PAGE_CONTENT = {
             "Bezahle bequem per Bank&uuml;berweisung, Bitcoin oder USDT. Entdecke das gesamte Sortiment im <a href=\"/de/shop\">Shop</a> oder lies mehr &uuml;ber unsere <a href=\"/de/delivery\">diskrete Lieferung</a>.",
             "Beliebte Produkte:"]),
         "shop": ("Gras, Haschisch &amp; Cali Weed kaufen", [
-            "Entdecke das gesamte Sortiment von WietStore: <strong>Gras, Haschisch, Cali Weed, Gruis und &Ouml;l</strong>. Alles wird diskret und geruchsneutral in die Niederlande, nach Belgien und Deutschland geliefert. W&auml;hle 15 bis 100 Gramm: je mehr du bestellst, desto niedriger der Preis pro Gramm.",
+            "Entdecke das gesamte Sortiment von WietStore: <strong>Gras, Haschisch, Cali Weed, Gruis und &Ouml;l</strong>. Alles wird diskret und geruchsneutral in die Niederlande, nach Belgien und Deutschland geliefert. W&auml;hle dein Gewicht von 3 bis 100 Gramm.",
             "Klicke auf ein Produkt f&uuml;r die vollst&auml;ndige Beschreibung, THC-Gehalt, Geschmack und Wirkung:"]),
         "delivery": ("Lieferung &amp; Versand", [
             "WietStore liefert <strong>diskret und geruchsneutral</strong> in die Niederlande, nach Belgien, Deutschland und Frankreich. Lieferungen nach Deutschland dauern in der Regel 2&ndash;4 Werktage.",
