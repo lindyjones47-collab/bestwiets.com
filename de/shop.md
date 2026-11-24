@@ -1,0 +1,157 @@
+# Gras, Haschisch & Cali Weed kaufen | Cannabis Shop – WietStore
+
+> Canonical page: https://bestwiets.com/de/shop · Language: Deutsch · Updated: 2026-11-24 · Source: generated from the same data as the HTML page · Maintainer: WietStore (bestwiets@outlook.com)
+
+Entdecke das gesamte Sortiment: Gras, Haschisch, Cali Weed, Gruis und Öl. Online bestellen und diskret geliefert in NL, Belgien und Deutschland.
+
+# Gras, Haschisch & Cali Weed kaufen
+
+Entdecke das gesamte Sortiment von WietStore: **Gras, Haschisch, Cali Weed, Gruis und Öl**. Alles wird diskret und geruchsneutral in die Niederlande, nach Belgien und Deutschland geliefert. Wähle dein Gewicht von 3 bis 100 Gramm.
+
+Klicke auf ein Produkt für die vollständige Beschreibung, THC-Gehalt, Geschmack und Wirkung:
+
+- [Tropicana Cookies kaufen](https://bestwiets.com/de/product/tropicana-cookies) — ab €42.00
+- [Pink Runtz kaufen](https://bestwiets.com/de/product/pink-runtz) — ab €42.00
+- [Mintz kaufen](https://bestwiets.com/de/product/mintz) — ab €42.00
+- [Route 66 kaufen](https://bestwiets.com/de/product/route-66) — ab €42.00
+- [Gelato 41 kaufen](https://bestwiets.com/de/product/gelato-41) — ab €42.00
+- [Bestwiet Voordeel Pakket 25 gram kaufen](https://bestwiets.com/de/product/bestwiet-voordeel-pakket-25-gram) — €255.00
+- [Platinum Blackberry kaufen](https://bestwiets.com/de/product/platinum-blackberry) — ab €30.00
+- [Runtz Cali kaufen](https://bestwiets.com/de/product/runtz-cali) — ab €30.00
+- [Exodus Cheese kaufen](https://bestwiets.com/de/product/exodus-cheese) — ab €42.00
+- [Sunset Sherbert lil buds per 5 gram kaufen](https://bestwiets.com/de/product/sunset-sherbert-lil-buds-per-5-gram) — €45.00
+- [Platinum Cookie kaufen](https://bestwiets.com/de/product/platinum-cookie) — ab €42.00
+- [Grape Ape kaufen](https://bestwiets.com/de/product/grape-ape) — ab €30.00
+- [Blueberry Cookies kaufen](https://bestwiets.com/de/product/blueberry-cookies) — ab €42.00
+- [Biscotti Cali kaufen](https://bestwiets.com/de/product/biscotti-cali) — ab €45.00
+- [Ice Cream Cake kaufen](https://bestwiets.com/de/product/ice-cream-cake) — ab €30.00
+- [Zkittelz NL kaufen](https://bestwiets.com/de/product/zkittelz-nl) — ab €42.00
+- [Wild Amnesia Haze per 10 gram kaufen](https://bestwiets.com/de/product/wild-amnesia-haze-per-10-gram) — €80.00
+- [Strawberry Banana Kush kaufen](https://bestwiets.com/de/product/strawberry-banana-kush) — ab €42.00
+- [Granddaddy Purple kaufen](https://bestwiets.com/de/product/granddaddy-purple) — ab €45.00
+- [Guava Cake kaufen](https://bestwiets.com/de/product/guava-cake) — ab €33.00
+- [THC Vape Amnesia Haze kaufen](https://bestwiets.com/de/product/thc-vape-amnesia-haze) — €65.00
+- [Green Papaya kaufen](https://bestwiets.com/de/product/green-papaya) — ab €33.00
+- [Animal Cookie kaufen](https://bestwiets.com/de/product/animal-cookie) — ab €42.00
+- [Cali Cocktail Gruis 5 Gram kaufen](https://bestwiets.com/de/product/cali-cocktail-gruis-5-gram) — €30.00
+- [Black Zoap Cali kaufen](https://bestwiets.com/de/product/black-zoap-cali) — ab €45.00
+- [Jack Herer Gruis 5 Gram kaufen](https://bestwiets.com/de/product/jack-herer-gruis-5-gram) — €25.00
+- [Snoop Dogg OG kaufen](https://bestwiets.com/de/product/snoop-dogg-og) — ab €42.00
+- [Wedding Cake kaufen](https://bestwiets.com/de/product/wedding-cake) — ab €42.00
+- [Grease Monkey kaufen](https://bestwiets.com/de/product/grease-monkey) — ab €39.00
+- [Black Cherry Punch kaufen](https://bestwiets.com/de/product/black-cherry-punch) — ab €39.00
+- [Snow White kaufen](https://bestwiets.com/de/product/snow-white) — ab €39.00
+- [Gorilla Butter kaufen](https://bestwiets.com/de/product/gorilla-butter) — ab €33.00
+- [Kandy Kush kaufen](https://bestwiets.com/de/product/kandy-kush) — ab €36.00
+- [Sweet Dreams kaufen](https://bestwiets.com/de/product/sweet-dreams) — ab €42.00
+- [Cherry Bomb kaufen](https://bestwiets.com/de/product/cherry-bomb) — ab €33.00
+- [Orange Bud kaufen](https://bestwiets.com/de/product/orange-bud) — ab €36.00
+- [Jungle Kush per 10 gram kaufen](https://bestwiets.com/de/product/jungle-kush-per-10-gram) — €90.00
+- [Purple Punch kaufen](https://bestwiets.com/de/product/purple-punch) — ab €42.00
+- [California Mix per 5 gram kaufen](https://bestwiets.com/de/product/california-mix-per-5-gram) — €65.00
+- [Banana Punch Dry Sift kaufen](https://bestwiets.com/de/product/banana-punch-dry-sift) — ab €39.00
+- [Miracle Alien Cookie kaufen](https://bestwiets.com/de/product/miracle-alien-cookie) — ab €39.00
+- [AK-47 kaufen](https://bestwiets.com/de/product/ak-47) — ab €36.00
+- [Sunset Sherbert kaufen](https://bestwiets.com/de/product/sunset-sherbert) — ab €39.00
+- [Piña Colada kaufen](https://bestwiets.com/de/product/pi-a-colada) — ab €42.00
+- [Permanent Marker Cali kaufen](https://bestwiets.com/de/product/permanent-marker-cali) — ab €48.00
+- [White Widow kaufen](https://bestwiets.com/de/product/white-widow) — ab €36.00
+- [Dutch Haze kaufen](https://bestwiets.com/de/product/dutch-haze) — ab €30.00
+- [Amnesia Dry Sift kaufen](https://bestwiets.com/de/product/amnesia-dry-sift) — ab €39.00
+- [Big Haze per 10 gram kaufen](https://bestwiets.com/de/product/big-haze-per-10-gram) — €90.00
+- [Oreo Cake kaufen](https://bestwiets.com/de/product/oreo-cake) — ab €39.00
+- [Rainbow Zkittelz Cali kaufen](https://bestwiets.com/de/product/rainbow-zkittelz-cali) — ab €45.00
+- [Mochi kaufen](https://bestwiets.com/de/product/mochi) — ab €39.00
+- [Forbidden Fruit kaufen](https://bestwiets.com/de/product/forbidden-fruit) — ab €36.00
+- [Pineapple Cookies kaufen](https://bestwiets.com/de/product/pineapple-cookies) — ab €36.00
+- [Sour Diesel kaufen](https://bestwiets.com/de/product/sour-diesel) — ab €42.00
+- [White Thunder kaufen](https://bestwiets.com/de/product/white-thunder) — ab €27.00
+- [Cheese Gruis 5 gram kaufen](https://bestwiets.com/de/product/cheese-gruis-5-gram) — €25.00
+- [Honey Banana kaufen](https://bestwiets.com/de/product/honey-banana) — ab €39.00
+- [Glitter Bomb kaufen](https://bestwiets.com/de/product/glitter-bomb) — ab €42.00
+- [Lemon Cherry Gelato Cali kaufen](https://bestwiets.com/de/product/lemon-cherry-gelato-cali) — ab €45.00
+- [Jungle Haze per 10 gram kaufen](https://bestwiets.com/de/product/jungle-haze-per-10-gram) — €75.00
+- [Girl Scout Cookies kaufen](https://bestwiets.com/de/product/girl-scout-cookies) — ab €39.00
+- [Bestwiet Budget Pakket 6 gram kaufen](https://bestwiets.com/de/product/bestwiet-budget-pakket-6-gram) — €60.00
+- [Kosher Kush Lil Buds per 5 gram kaufen](https://bestwiets.com/de/product/kosher-kush-lil-buds-per-5-gram) — €45.00
+- [Super Silver Haze Gruis 5 Gram kaufen](https://bestwiets.com/de/product/super-silver-haze-gruis-5-gram) — €25.00
+- [Dutch Cocktail Gruis 5 Gram kaufen](https://bestwiets.com/de/product/dutch-cocktail-gruis-5-gram) — €25.00
+- [Kosher Kush kaufen](https://bestwiets.com/de/product/kosher-kush) — ab €39.00
+- [Green Crack kaufen](https://bestwiets.com/de/product/green-crack) — ab €39.00
+- [OG18 kaufen](https://bestwiets.com/de/product/og18) — ab €39.00
+- [BHO-olie Aanbieding 2 stuks 125 kaufen](https://bestwiets.com/de/product/bho-olie-aanbieding-2-stuks-125) — €125.00
+- [Power Plant Lil Buds kaufen](https://bestwiets.com/de/product/power-plant-lil-buds) — €42.50
+- [Power Plant Gruis 5 Gram kaufen](https://bestwiets.com/de/product/power-plant-gruis-5-gram) — €25.00
+- [Hollandse Cocktail Lil Buds per 10 gram kaufen](https://bestwiets.com/de/product/hollandse-cocktail-lil-buds-per-10-gram) — €80.00
+- [OG Kush Lil Buds per 10 gram kaufen](https://bestwiets.com/de/product/og-kush-lil-buds-per-10-gram) — €70.00
+- [Strawberry Banana Kush Lil Buds per 10 gram kaufen](https://bestwiets.com/de/product/strawberry-banana-kush-lil-buds-per-10-gram) — €70.00
+- [Canadian Cocktail Gruis 5 Gram kaufen](https://bestwiets.com/de/product/canadian-cocktail-gruis-5-gram) — €25.00
+- [Vanilla Latte kaufen](https://bestwiets.com/de/product/vanilla-latte) — ab €42.00
+- [Amnesia Haze Gruis 5 Gram kaufen](https://bestwiets.com/de/product/amnesia-haze-gruis-5-gram) — €25.00
+- [New York Diesel kaufen](https://bestwiets.com/de/product/new-york-diesel) — ab €36.00
+- [LA Confidential kaufen](https://bestwiets.com/de/product/la-confidential) — ab €42.00
+- [Crazy Glue kaufen](https://bestwiets.com/de/product/crazy-glue) — ab €42.00
+- [Ice Cream Hasj kaufen](https://bestwiets.com/de/product/ice-cream-hasj) — ab €39.00
+- [Northern Lights Lil Buds kaufen](https://bestwiets.com/de/product/northern-lights-lil-buds) — €45.00
+- [White Widow Gruis 5 Gram kaufen](https://bestwiets.com/de/product/white-widow-gruis-5-gram) — €25.00
+- [Enemy Of The State Gruis 5 Gram kaufen](https://bestwiets.com/de/product/enemy-of-the-state-gruis-5-gram) — €25.00
+- [Strawberry Banana Hasj kaufen](https://bestwiets.com/de/product/strawberry-banana-hasj) — ab €33.00
+- [Blonde Maroc Hasj kaufen](https://bestwiets.com/de/product/blonde-maroc-hasj) — ab €36.00
+- [Cookies Gruis 5 Gram kaufen](https://bestwiets.com/de/product/cookies-gruis-5-gram) — €25.00
+- [Sweet Jack Lil Buds  5 gram kaufen](https://bestwiets.com/de/product/sweet-jack-lil-buds-5-gram) — €45.00
+- [Amnesia Haze Lil Buds kaufen](https://bestwiets.com/de/product/amnesia-haze-lil-buds) — €45.00
+- [Kush Gruis 5 Gram kaufen](https://bestwiets.com/de/product/kush-gruis-5-gram) — €25.00
+- [Hasjolie kaufen](https://bestwiets.com/de/product/hasjolie) — €60.00
+- [Wietolie kaufen](https://bestwiets.com/de/product/wietolie) — €60.00
+- [Bubble Gum Gruis 5 Gram kaufen](https://bestwiets.com/de/product/bubble-gum-gruis-5-gram) — €25.00
+- [Enemy of the State kaufen](https://bestwiets.com/de/product/enemy-of-the-state) — ab €39.00
+- [Lemon Haze Gruis 5 Gram kaufen](https://bestwiets.com/de/product/lemon-haze-gruis-5-gram) — €25.00
+- [Italian Ice kaufen](https://bestwiets.com/de/product/italian-ice) — ab €42.00
+- [Gary Payton kaufen](https://bestwiets.com/de/product/gary-payton) — ab €42.00
+- [Champagne Hasj kaufen](https://bestwiets.com/de/product/champagne-hasj) — ab €42.00
+- [Beldia Hasj kaufen](https://bestwiets.com/de/product/beldia-hasj) — ab €36.00
+- [Amnesia Polm kaufen](https://bestwiets.com/de/product/amnesia-polm) — ab €36.00
+- [Gorilla Pie kaufen](https://bestwiets.com/de/product/gorilla-pie) — ab €39.00
+- [Super Lemon Haze Lil Buds kaufen](https://bestwiets.com/de/product/super-lemon-haze-lil-buds) — €47.50
+- [Diamond Super Haze kaufen](https://bestwiets.com/de/product/diamond-super-haze) — ab €39.00
+- [New York Diesel Lil Buds kaufen](https://bestwiets.com/de/product/new-york-diesel-lil-buds) — €45.00
+- [Candy Rain kaufen](https://bestwiets.com/de/product/candy-rain) — ab €39.00
+- [Cali Strawberry Pavé kaufen](https://bestwiets.com/de/product/cali-strawberry-pav) — ab €48.00
+- [Ice Wine kaufen](https://bestwiets.com/de/product/ice-wine) — ab €42.00
+- [Moonrock Amnesia Haze kaufen](https://bestwiets.com/de/product/moonrock-amnesia-haze) — ab €90.00
+- [Candy Kush Hasj kaufen](https://bestwiets.com/de/product/candy-kush-hasj) — ab €33.00
+- [Fruity Pebbles OG kaufen](https://bestwiets.com/de/product/fruity-pebbles-og) — ab €36.00
+- [Jack Herer kaufen](https://bestwiets.com/de/product/jack-herer) — ab €36.00
+- [Sneeuwwitje kaufen](https://bestwiets.com/de/product/sneeuwwitje) — ab €36.00
+- [Canadian Mix per 5 gram kaufen](https://bestwiets.com/de/product/canadian-mix-per-5-gram) — €60.00
+- [Northern Lights kaufen](https://bestwiets.com/de/product/northern-lights) — ab €36.00
+- [BHO-olie kaufen](https://bestwiets.com/de/product/bho-olie) — €75.00
+- [Sugar Cane kaufen](https://bestwiets.com/de/product/sugar-cane) — ab €42.00
+- [Gelato Hasj kaufen](https://bestwiets.com/de/product/gelato-hasj) — ab €36.00
+- [Full-Spectrum THC-olie kaufen](https://bestwiets.com/de/product/full-spectrum-thc-olie) — €25.00
+- [Full-Spectrum BHO 99% kaufen](https://bestwiets.com/de/product/full-spectrum-bho-99) — €32.50
+- [Blue Muffin kaufen](https://bestwiets.com/de/product/blue-muffin) — ab €39.00
+- [Super Silver Haze kaufen](https://bestwiets.com/de/product/super-silver-haze) — ab €39.00
+- [Tipboekje kaufen](https://bestwiets.com/de/product/tipboekje) — €1.00
+- [Smoking Gold King Size kaufen](https://bestwiets.com/de/product/smoking-gold-king-size) — €1.50
+- [Smoking Blue King Size kaufen](https://bestwiets.com/de/product/smoking-blue-king-size) — €1.50
+- [Smoking Red King Size kaufen](https://bestwiets.com/de/product/smoking-red-king-size) — €1.50
+- [Lemon Haze kaufen](https://bestwiets.com/de/product/lemon-haze) — ab €39.00
+- [Power Plant kaufen](https://bestwiets.com/de/product/power-plant) — ab €36.00
+- [Amnesia Haze kaufen](https://bestwiets.com/de/product/amnesia-haze) — ab €36.00
+- [Amnesia Haze Voorgedraaide Joint kaufen](https://bestwiets.com/de/product/amnesia-haze-voorgedraaide-joint) — €35.00
+- [Preroll Power Pack – 18 gram kaufen](https://bestwiets.com/de/product/preroll-power-pack-18-gram) — €160.00
+- [Blue Lotus Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/blue-lotus-prerolls) — ab €29.99
+- [Super Silver Haze Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/super-silver-haze-prerolls) — ab €29.99
+- [Skittlez Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/skittlez-prerolls) — ab €29.99
+- [Amnesia Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/amnesia-prerolls) — ab €29.99
+- [Amnesia Superior Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/amnesia-superior-prerolls) — ab €24.99
+- [Gelato Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/gelato-prerolls) — ab €29.99
+- [Lemon Haze Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/lemon-haze-prerolls) — ab €29.99
+- [Preroll Maxi Pack – 18 gram kaufen](https://bestwiets.com/de/product/preroll-maxi-pack-18-gram) — €150.00
+- [Cookies Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/cookies-prerolls) — ab €19.99
+- [Lemon Haze Voordeel Joints kaufen](https://bestwiets.com/de/product/lemon-haze-voordeel-prerolls) — ab €24.99
+- [Loom Hellfire Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/loom-hellfire-prerolls) — ab €24.99
+- [Dealers Choice Kit kaufen](https://bestwiets.com/de/product/dealers-choice-kit) — €259.99
+- [Superior Blunt Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/superior-blunt-prerolls) — ab €19.99
+- [Purple Kinky Kush Voorgedraaide Joints kaufen](https://bestwiets.com/de/product/purple-kinky-kush-prerolls) — ab €19.99

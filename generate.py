@@ -44,6 +44,29 @@ def esc(s):
     return (str(s).replace("&", "&amp;").replace("<", "&lt;")
             .replace(">", "&gt;").replace('"', "&quot;"))
 
+DESC_DE = json.loads(re.search(r"const DESC_DE = (\{.*?\});\n", TEMPLATE, re.S).group(1))
+ATTR_DE = json.loads(re.search(r"const ATTR_DE = (\{.*?\});\n", TEMPLATE, re.S).group(1))
+CAT_DE = json.loads(re.search(r"const CAT_DE = (\{.*?\});\n", TEMPLATE, re.S).group(1))
+CHROME_DE = json.loads(re.search(r"const _CHROME_DE = (\{.*?\});\n", TEMPLATE, re.S).group(1))
+
+def product_meta_desc_de(p):  # mirrors _metaDescDe() in index.html
+    first = DESC_DE.get(p["slug"], p["desc"]).split(". ")[0].strip().rstrip(".")
+    md = "%s kaufen bei WietStore. %s. Diskret geliefert nach Deutschland, Österreich & in die Schweiz." % (p["name"], first)
+    if len(md) > 158:
+        md = md[:155].rsplit(" ", 1)[0] + "…"
+    return md
+
+def _de_chrome(html):
+    """German labels + German URLs in the static header of German pages (mirrors _localizeChrome)."""
+    h0 = html.index('<header class="site">'); h1 = html.index("</header>", h0)
+    hd = html[h0:h1]
+    for nl, de in CHROME_DE.items():
+        hd = re.sub(r">(\s*)%s(\s*)<" % re.escape(esc(nl).replace("&quot;", '"')), lambda m: ">%s%s%s<" % (m.group(1), esc(de), m.group(2)), hd)
+    hd = hd.replace('href="/shop"', 'href="/de/shop"').replace('href="/" data-nav="home"', 'href="/de/" data-nav="home"')
+    for k in ("about", "delivery", "contact"):
+        hd = hd.replace('href="/%s" data-nav="%s"' % (k, k), 'href="/de/%s" data-nav="%s"' % (k, k))
+    return html[:h0] + hd + html[h1:]
+
 def product_meta_desc(p):
     """Concise, SERP-friendly meta description (~150 chars) — first sentence only."""
     first = p["desc"].split(". ")[0].strip().rstrip(".")
@@ -112,7 +135,7 @@ def _city_featured(c):
 def city_body(c):
     CC = CITY_COUNTRY[c["c"]]
     city, region = esc(c["n"]), esc(c["r"])
-    featlinks = ", ".join('<a href="/product/%s">%s</a>' % (esc(p["slug"]), esc(p["name"])) for p in _city_featured(c))
+    featlinks = ", ".join('<a href="%s/product/%s">%s</a>' % ("" if c["c"] == "fr" else "/de", esc(p["slug"]), esc(p["name"])) for p in _city_featured(c))
     nb = " &middot; ".join('<a href="/%s">%s</a>' % (esc(x["s"]), esc(x["n"])) for x in _city_nearby(c))
     if c["c"] == "fr":
         return (
@@ -222,9 +245,11 @@ MARKER = re.compile(r"<!--SEO:START-->.*?<!--SEO:END-->", re.S)
 APP_MARKER = re.compile(r"<!--APP:START-->.*?<!--APP:END-->", re.S)
 
 ROUTE_META = {}  # path -> (title, desc, lang); feeds sitemap.md / llms.txt
+ROUTE_BODY = {}  # path -> pre-rendered body HTML; feeds the .md copies
 
 def write_route(out_path, title, desc, path, og_image, jsonld, alts=None, lang="nl", body=""):
     ROUTE_META[path] = (title, desc, lang)
+    ROUTE_BODY[path] = body or ""
     # record a content-stable lastmod (title+desc+body drive the freshness signal)
     _lastmod(path, title, desc, body or "")
     block = "<!--SEO:START-->\n" + seo_block(title, desc, path, og_image, jsonld, alts) + "\n<!--SEO:END-->"
@@ -236,6 +261,10 @@ def write_route(out_path, title, desc, path, og_image, jsonld, alts=None, lang="
     html = APP_MARKER.sub(lambda m: app, html)
     if lang != "nl":
         html = html.replace('<html lang="nl">', '<html lang="%s">' % lang, 1)
+    if lang == "de":
+        html = _de_chrome(html)
+        html = html.replace('<meta property="og:locale" content="nl_NL">', '<meta property="og:locale" content="de_DE">', 1)
+        html = html.replace('<meta property="og:locale:alternate" content="de_DE">', '<meta property="og:locale:alternate" content="nl_NL">', 1)
     full = os.path.join(ROOT, out_path)
     os.makedirs(os.path.dirname(full), exist_ok=True) if os.path.dirname(out_path) else None
     open(full, "w", encoding="utf-8").write(html)
@@ -280,12 +309,14 @@ def _crumb_html(items):
         parts.append('<a href="%s">%s</a>' % (u, esc(n)) if u else '<span>%s</span>' % esc(n))
     return '<nav class="pr-crumb" aria-label="Kruimelpad">%s</nav>' % "".join(parts)
 
-def _product_links(items=None, limit=None):
+def _product_links(items=None, limit=None, lang="nl"):
     items = items if items is not None else PRODUCTS
     if limit:
         items = items[:limit]
+    de = lang == "de"
     return '<ul class="pr-list">%s</ul>' % "".join(
-        '<li><a href="/product/%s">%s kopen</a> &mdash; %s&euro;%.2f</li>' % (esc(p["slug"]), esc(p["name"]), "vanaf " if p.get("variants") else "", p["price"])
+        '<li><a href="%s/product/%s">%s %s</a> &mdash; %s&euro;%.2f</li>' % ("/de" if de else "", esc(p["slug"]), esc(p["name"]), "kaufen" if de else "kopen",
+                                                                       ("ab " if de else "vanaf ") if p.get("variants") else "", p["price"])
         for p in items)
 
 def _article_links():
@@ -299,6 +330,38 @@ def _related_html(p):  # same selection as the SPA's pageProduct (same category,
     if not rel:
         return ''
     return '<h2>Ook interessant</h2>' + _product_links(rel)
+
+def render_product_de(p):
+    path = "/de/product/" + p["slug"]
+    specs = []
+    if p.get("thc"):
+        specs.append("<li><strong>THC:</strong> %s</li>" % esc(p["thc"]))
+    for label, key in (("Geschmack", "flavors"), ("Wirkung", "effects"), ("Medizinisch", "medicinal")):
+        if p.get(key):
+            specs.append("<li><strong>%s:</strong> %s</li>" % (label, esc(", ".join(ATTR_DE.get(v, v) for v in p[key]))))
+    specs_html = ('<ul class="pr-specs">%s</ul>' % "".join(specs)) if specs else ""
+    avail = "Auf Lager" if p.get("stock") == "In stock" else "Vorübergehend ausverkauft"
+    variants_html = ""
+    if p.get("variants"):
+        _is_qty = "stuks" in p["variants"][0]["label"].lower()
+        lis = "".join("<li>%s &mdash; &euro;%.2f%s</li>" % (esc(re.sub(r"(?i)\bstuks?\b", "Stück", v["label"])), v["price"], " (&euro;%.2f/g)" % v["pg"] if v.get("pg") else "") for v in p["variants"])
+        variants_html = '<p><strong>%s:</strong></p><ul class="pr-specs">%s</ul>' % (
+            "Verfügbare Gewichte" if p.get("ppg") else ("Verfügbare Mengen" if _is_qty else "Verfügbare Varianten"), lis)
+    rel = [x for x in PRODUCTS if x.get("cat") == p.get("cat") and x["slug"] != p["slug"]][:4]
+    return (
+        '<article class="pr">'
+        + _crumb_html([("Startseite", "/de/"), ("Shop", "/de/shop"), (p["name"], path)])
+        + "<h1>%s kaufen</h1>" % esc(p["name"])
+        + '<img src="%s" alt="%s kaufen" width="480" height="480" loading="eager">' % (esc(p["img"]), esc(p["name"]))
+        + '<p class="pr-price"><strong>%s&euro;%.2f</strong> &middot; %s &middot; %s</p>' % ("ab " if p.get("variants") else "", p["price"], esc(CAT_DE.get(p.get("cat"), p.get("cat", ""))), avail)
+        + "<p>%s</p>" % esc(DESC_DE.get(p["slug"], p["desc"]))
+        + specs_html + variants_html
+        + ("<p>Erhältlich von 3 bis 100 Gramm. " if p.get("ppg") else "<p>") + "Diskret und geruchsneutral geliefert nach Deutschland, Österreich, in die Schweiz, nach Frankreich, Belgien und in die Niederlande.</p>"
+        + "<p>Versandkosten: Deutschland, Österreich, Schweiz und andere europäische Länder &euro;20, Niederlande &euro;15 (Amsterdam &euro;10). Mindestbestellwert &euro;%d. Bezahlung per Banküberweisung, Bitcoin, USDT oder Litecoin.</p>" % MIN_ORDER
+        + (("<h2>Das könnte dir auch gefallen</h2>" + _product_links(rel, lang="de")) if rel else "")
+        + '<p><a href="/de/shop">Zum gesamten Sortiment</a> &middot; <a href="/de/delivery">Lieferung &amp; Versand</a> &middot; <a href="/de/cannabis-kaufen-deutschland">Cannabis kaufen in Deutschland</a></p>'
+        + "</article>"
+    )
 
 def render_product(p):
     path = "/product/" + p["slug"]
@@ -446,20 +509,23 @@ def page_body(key, lang="nl"):
     html = '<section class="pr"><h1>%s</h1>' % h1
     html += "".join("<p>%s</p>" % para for para in paras)
     if key == "shop":
-        html += _product_links()
+        html += _product_links(lang=lang)
     elif key == "blog":
         html += _article_links()
     elif key == "home":
-        html += _product_links(limit=12)
+        html += _product_links(limit=12, lang=lang)
+        if lang == "de":
+            html += _city_links("de") + "<h2>Ratgeber</h2>" + '<ul class="pr-list">%s</ul>' % "".join(
+                '<li><a href="/%s">%s</a></li>' % (esc(b["slug"]), esc(b["title"])) for b in BLOG if b.get("lang") == "de")
         html += '<p><a href="/shop">Alle producten &rarr;</a></p>' if lang == "nl" else (
             '<p><a href="/en/shop">All products &rarr;</a></p>' if lang == "en" else '<p><a href="/de/shop">Alle Produkte &rarr;</a></p>')
         html += _country_links(lang)
     html += "</section>"
     return html
 
-def country_body(h1, lead, cta_href, cta_label):
+def country_body(h1, lead, cta_href, cta_label, lang="nl"):
     return ('<section class="pr"><h1>%s</h1><p>%s</p>%s'
-            '<p><a href="%s">%s</a></p></section>') % (h1, lead, _product_links(limit=16), cta_href, cta_label)
+            '<p><a href="%s">%s</a></p></section>') % (h1, lead, _product_links(limit=16, lang=lang), cta_href, cta_label)
 
 urls = []  # (path, lastmod, priority)
 
@@ -514,7 +580,7 @@ de_bc = crumb([("Startseite", "/de/"), ("Cannabis kaufen Deutschland", de_path)]
 de_body = country_body(
     "Cannabis kaufen in Deutschland",
     "Cannabis online kaufen und diskret nach Deutschland liefern lassen. WietStore bietet Premium-Weed, Haschisch und Cali Weed in Amsterdamer Coffeeshop-Qualit&auml;t, geruchsneutral verpackt und in der Regel innerhalb von 2&ndash;4 Werktagen geliefert. Bezahlung per Bank&uuml;berweisung, Bitcoin oder USDT.",
-    "/de/shop", "Zum gesamten Sortiment &rarr;") + '<section class="pr">' + _city_links("de") + '</section>'
+    "/de/shop", "Zum gesamten Sortiment &rarr;", lang="de") + '<section class="pr">' + _city_links("de") + '</section>'
 write_route("de/cannabis-kaufen-deutschland.html",
             "Cannabis kaufen in Deutschland | Diskreter Versand – WietStore",
             "Cannabis online kaufen und nach Deutschland liefern lassen. Premium Weed, Haschisch und Cali Weed in Coffeeshop-Qualität, diskret in 2–4 Werktagen geliefert.",
@@ -526,14 +592,14 @@ EXTRA_LANDINGS = [
     {"slug": "cannabis-kaufen-oesterreich", "lang": "de", "hl": "de-AT", "home": "Startseite",
      "crumb": "Cannabis kaufen Österreich",
      "title": "Cannabis kaufen in Österreich | Diskrete Lieferung – WietStore",
-     "desc": "Cannabis online kaufen und nach Österreich liefern lassen. Premium Weed, Haschisch und vorgerollte Joints in Amsterdamer Coffeeshop-Qualität, diskret in wenigen Werktagen.",
+     "desc": "Cannabis online kaufen und nach Österreich liefern lassen: Premium Weed, Haschisch und Pre-Rolls in Coffeeshop-Qualität, diskret verpackt.",
      "h1": "Cannabis kaufen in Österreich",
      "lead": "Cannabis online kaufen und diskret nach Österreich liefern lassen. WietStore bietet Premium-Weed, Haschisch, Cali Weed und vorgerollte Joints in Amsterdamer Coffeeshop-Qualit&auml;t, geruchsneutral verpackt. Bezahlung per Bank&uuml;berweisung, Bitcoin oder USDT.",
      "cta": ("/shop", "Zum gesamten Sortiment &rarr;")},
     {"slug": "cannabis-kaufen-schweiz", "lang": "de", "hl": "de-CH", "home": "Startseite",
      "crumb": "Cannabis kaufen Schweiz",
      "title": "Cannabis kaufen in der Schweiz | Diskrete Lieferung – WietStore",
-     "desc": "Cannabis online kaufen und in die Schweiz liefern lassen. Premium Weed, Haschisch und vorgerollte Joints in Amsterdamer Coffeeshop-Qualität, diskret und geruchsneutral verpackt.",
+     "desc": "Cannabis online kaufen und in die Schweiz liefern lassen: Premium Weed, Haschisch und Pre-Rolls in Coffeeshop-Qualität, diskret verpackt.",
      "h1": "Cannabis kaufen in der Schweiz",
      "lead": "Cannabis online kaufen und diskret in die Schweiz liefern lassen. WietStore bietet Premium-Weed, Haschisch, Cali Weed und vorgerollte Joints in Amsterdamer Coffeeshop-Qualit&auml;t, geruchsneutral verpackt. Bezahlung per Bank&uuml;berweisung, Bitcoin oder USDT.",
      "cta": ("/shop", "Zum gesamten Sortiment &rarr;")},
@@ -552,7 +618,7 @@ for L in EXTRA_LANDINGS:
     alts = COUNTRY_ALTS
     _ck = _LAND_CK[L["hl"]]
     body = ('<section class="pr"><h1>%s</h1><p>%s</p>%s%s<p><a href="%s">%s</a></p></section>') % (
-        esc(L["h1"]), L["lead"], _product_links(limit=16), _country_links(L["lang"]),
+        esc(L["h1"]), L["lead"], _product_links(limit=16, lang=L["lang"]), _country_links(L["lang"]),
         L["cta"][0], L["cta"][1])
     body += '<section class="pr">' + _city_links(_ck) + '</section>'
     write_route("%s.html" % L["slug"], L["title"], L["desc"], path, OG_DEFAULT, [bc], alts,
@@ -664,8 +730,28 @@ for p in PRODUCTS:
     if extras:
         product["additionalProperty"] = extras
     bc = crumb([("Home", "/"), ("Shop", "/shop"), (p["name"], path)])
-    write_route("product/%s.html" % p["slug"], title, desc, path, img, [product, bc], body=render_product(p))
+    _palts = [("nl", path), ("de", "/de" + path), ("x-default", path)]
+    write_route("product/%s.html" % p["slug"], title, desc, path, img, [product, bc], _palts, body=render_product(p))
     urls.append((path, TODAY, "0.8"))
+    # German product page (/de/product/<slug>) — Germany-first SEO
+    dpath = "/de" + path
+    dtitle = "%s kaufen – %s€%.2f | WietStore" % (p["name"], "ab " if p.get("variants") else "", p["price"])
+    dextras = []
+    if p.get("thc"):
+        dextras.append({"@type": "PropertyValue", "name": "THC", "value": p["thc"]})
+    for _lbl, _k in (("Geschmack", "flavors"), ("Wirkung", "effects"), ("Medizinisch", "medicinal")):
+        if p.get(_k):
+            dextras.append({"@type": "PropertyValue", "name": _lbl, "value": ", ".join(ATTR_DE.get(v, v) for v in p[_k])})
+    doffers = dict(offers, url=SITE + dpath)
+    dproduct = {"@context": "https://schema.org", "@type": "Product", "name": p["name"], "image": img,
+                "description": DESC_DE.get(p["slug"], p["desc"]), "category": CAT_DE.get(p["cat"], p["cat"]), "sku": p["slug"],
+                "brand": {"@type": "Brand", "name": "WietStore"}, "offers": doffers}
+    if dextras:
+        dproduct["additionalProperty"] = dextras
+    dbc = crumb([("Startseite", "/de/"), ("Shop", "/de/shop"), (p["name"], dpath)])
+    write_route("de/product/%s.html" % p["slug"], dtitle, product_meta_desc_de(p), dpath, img, [dproduct, dbc], _palts,
+                lang="de", body=render_product_de(p))
+    urls.append((dpath, TODAY, "0.8"))
 
 # Sitemap — use content-stable lastmod per URL (only changes when the page changes)
 sm = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -683,9 +769,11 @@ json.dump(_LM_STORE, open(_LM_PATH, "w", encoding="utf-8"), ensure_ascii=False, 
 _LANG_NAME = {"nl": "Nederlands", "de": "Deutsch", "en": "English", "fr": "Français"}
 def _md(t):
     return re.sub(r"\s+", " ", html.unescape(t)).replace("[", "(").replace("]", ")").strip()
+def _mdpath(path):
+    return path + "index.md" if path.endswith("/") else path + ".md"
 def _line(path):
     t, d, l = ROUTE_META[path]
-    return "- [%s](%s%s) — %s _(%s)_" % (_md(t), SITE, path, _md(d), _LANG_NAME.get(l, l))
+    return "- [%s](%s%s) · [Markdown](%s%s) — %s _(%s)_" % (_md(t), SITE, path, SITE, _mdpath(path), _md(d), _LANG_NAME.get(l, l))
 _seen = set()
 def _sec(title, intro, paths):
     paths = [p for p in paths if p in ROUTE_META and p not in _seen]
@@ -704,7 +792,7 @@ for _b in BLOG:
     _blog_by_lang.setdefault(_b.get("lang", "nl"), []).append("/" + _b["slug"])
 smd = ["# WietStore (bestwiets.com) — site map", "",
        "Every public page of bestwiets.com, grouped by topic, with its purpose and language. "
-       "Links point to the canonical HTML pages; prices, stock and delivery terms on those pages are authoritative. "
+       "Each entry links the canonical HTML page and its Markdown copy (same content, generated from the same data); prices, stock and delivery terms on the HTML pages are authoritative. "
        "Generated from the same source data as the website (%d pages)." % len(urls)]
 smd += _sec("Main pages", "Home, shop, ordering, delivery, returns, terms and contact.",
             ["/", "/shop", "/prerolls", "/delivery", "/bestelhandleiding", "/returns", "/voorwaarden", "/about", "/contact", "/blog",
@@ -714,19 +802,59 @@ smd += _sec("Country pages", "Ordering and delivery per country (Belgium, German
 for _cc, _name in (("de", "Germany"), ("at", "Austria"), ("ch", "Switzerland"), ("fr", "France")):
     smd += _sec("City pages — " + _name, "Local delivery information per city in %s." % _name, _city_by_cc.get(_cc, []))
 for _cat, _ps in _prod_paths.items():
-    smd += _sec("Products — " + _cat, "Product pages with price per weight or per item, THC, taste and effect.", _ps)
+    smd += _sec("Produkte (Deutsch) — " + CAT_DE.get(_cat, _cat), "Deutsche Produktseiten mit Preis pro Gewicht oder Stück, THC, Geschmack und Wirkung.", ["/de" + x for x in _ps])
+for _cat, _ps in _prod_paths.items():
+    smd += _sec("Products (Dutch) — " + _cat, "Dutch product pages with price per weight or per item, THC, taste and effect.", _ps)
 for _l, _ps in _blog_by_lang.items():
     smd += _sec("Guides (%s)" % _LANG_NAME.get(_l, _l), "Articles about strains, buying, payment and delivery.", _ps)
 smd += _sec("Other pages", "Remaining public pages.", sorted(ROUTE_META))
 open(os.path.join(ROOT, "sitemap.md"), "w", encoding="utf-8", newline="\n").write("\n".join(smd) + "\n")
 
+# Markdown copies of every page (for LLM readers; search engines are pointed at the HTML via robots.txt)
+def _html_to_md(h):
+    h = re.sub(r"(?is)<(script|style)\b.*?</\1>", "", h)
+    h = re.sub(r'(?is)<img\b[^>]*?src="([^"]+)"[^>]*?alt="([^"]*)"[^>]*>', lambda m: "![%s](%s)" % (m.group(2), m.group(1) if m.group(1).startswith("http") else SITE + m.group(1)), h)
+    h = re.sub(r"(?is)<img\b[^>]*>", "", h)
+    h = re.sub(r'(?is)<a\b[^>]*?href="([^"]+)"[^>]*>(.*?)</a>', lambda m: "[%s](%s)" % (re.sub(r"<[^>]+>", "", m.group(2)).strip(), m.group(1) if re.match(r"(?i)https?:|mailto:|tel:", m.group(1)) else SITE + m.group(1)), h)
+    for n in range(1, 5):
+        h = re.sub(r"(?is)<h%d\b[^>]*>(.*?)</h%d>" % (n, n), lambda m, n=n: "\n\n" + "#" * n + " " + re.sub(r"<[^>]+>", "", m.group(1)).strip() + "\n\n", h)
+    h = re.sub(r"(?is)<li\b[^>]*>", "\n- ", h)
+    h = re.sub(r"(?is)<(strong|b)\b[^>]*>(.*?)</\1>", r"**\2**", h)
+    h = re.sub(r"(?is)<(em|i)\b[^>]*>(.*?)</\1>", r"*\2*", h)
+    h = re.sub(r"(?is)<br\s*/?>", "\n", h)
+    h = re.sub(r"(?is)</?(p|div|section|article|ul|ol|nav|aside|table|tr)\b[^>]*>", "\n\n", h)
+    h = re.sub(r"(?s)<[^>]+>", "", h)
+    h = html.unescape(h)
+    h = "\n".join(l.rstrip() for l in h.split("\n"))
+    return re.sub(r"\n{3,}", "\n\n", h).strip()
+_MD_MANIFEST = os.path.join(ROOT, ".md-mirrors.json")
+_old_md = set(json.load(open(_MD_MANIFEST, encoding="utf-8"))) if os.path.exists(_MD_MANIFEST) else set()
+_new_md = set()
+for _path, (_t, _d, _l) in ROUTE_META.items():
+    _rel = _mdpath(_path).lstrip("/")
+    _body = _html_to_md(ROUTE_BODY.get(_path, ""))
+    _hdr = ("# %s\n\n> Canonical page: %s%s · Language: %s · Updated: %s · Source: generated from the same data as the HTML page · Maintainer: WietStore (bestwiets@outlook.com)\n\n%s\n\n"
+            % (_md(_t), SITE, _path, _LANG_NAME.get(_l, _l), PAGE_LASTMOD.get(_path, TODAY), _md(_d)))
+    _full = os.path.join(ROOT, _rel)
+    os.makedirs(os.path.dirname(_full) or ROOT, exist_ok=True)
+    open(_full, "w", encoding="utf-8", newline="\n").write(_hdr + _body + "\n")
+    _new_md.add(_rel)
+for _rel in _old_md - _new_md:  # pages that no longer exist lose their copy too
+    try:
+        os.remove(os.path.join(ROOT, _rel))
+    except OSError:
+        pass
+json.dump(sorted(_new_md), open(_MD_MANIFEST, "w", encoding="utf-8"), indent=0)
+
 _FEE_EN = {"Amsterdam": "Amsterdam", "Andere stad in Nederland": "rest of the Netherlands", "Ander land in Europa": "other European countries"}
 _fees = ", ".join("%s €%s" % (_FEE_EN.get(k, k), v) for k, v in re.findall(r'"([^"]+)"\s*:\s*(\d+)', re.search(r"const DELIVERY_FEES\s*=\s*\{([^}]*)\}", TEMPLATE).group(1)))
 llms = """# WietStore (bestwiets.com)
 
-> WietStore is a Dutch online cannabis shop (Amsterdam, Netherlands) selling weed per gram, hash, cali weed, grit, pre-rolled joints and THC oil, delivered discreetly in the Netherlands, Belgium, Germany, Austria, Switzerland and France. Adults 18+ only.
+> WietStore is a Dutch online cannabis shop (Amsterdam, Netherlands) selling weed per gram, hash, cali weed, grit, pre-rolled joints and THC oil, delivered discreetly to Germany, Austria, Switzerland, France, Belgium and the Netherlands. Adults 18+ only.
 
 If you are an LLM looking for information about this site, use the content map at https://bestwiets.com/sitemap.md to find the relevant topic and its page, and rely on that canonical page for prices, stock and terms. If the information you need is not on the site, report that gap instead of guessing.
+
+Every page has a Markdown copy at the same address with ".md" appended (folder pages use "index.md", e.g. https://bestwiets.com/de/index.md); the site map links each one. German-language pages: https://bestwiets.com/de/ (shop: /de/shop, products: /de/product/<name>).
 
 Key facts (from the live shop configuration):
 - Minimum order: €%d

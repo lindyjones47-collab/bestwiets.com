@@ -1,0 +1,157 @@
+# Buy Weed, Hash & Cali Weed – Online Cannabis Shop | WietStore
+
+> Canonical page: https://bestwiets.com/en/shop · Language: English · Updated: 2026-11-12 · Source: generated from the same data as the HTML page · Maintainer: WietStore (bestwiets@outlook.com)
+
+Browse the full range: weed, hash, cali weed, grit and cannabis oil. Order online and get it discreetly delivered in NL, BE and DE.
+
+# Buy weed, hash & cali weed
+
+Browse WietStore's full range: **weed, hash, cali weed, grit and cannabis oil**. Everything is delivered discreetly and odourlessly across the Netherlands, Belgium and Germany. Choose your weight from 3 to 100 grams.
+
+Click a product for the full description, THC level, flavour and effect:
+
+- [Tropicana Cookies kopen](https://bestwiets.com/product/tropicana-cookies) — vanaf €42.00
+- [Pink Runtz kopen](https://bestwiets.com/product/pink-runtz) — vanaf €42.00
+- [Mintz kopen](https://bestwiets.com/product/mintz) — vanaf €42.00
+- [Route 66 kopen](https://bestwiets.com/product/route-66) — vanaf €42.00
+- [Gelato 41 kopen](https://bestwiets.com/product/gelato-41) — vanaf €42.00
+- [Bestwiet Voordeel Pakket 25 gram kopen](https://bestwiets.com/product/bestwiet-voordeel-pakket-25-gram) — €255.00
+- [Platinum Blackberry kopen](https://bestwiets.com/product/platinum-blackberry) — vanaf €30.00
+- [Runtz Cali kopen](https://bestwiets.com/product/runtz-cali) — vanaf €30.00
+- [Exodus Cheese kopen](https://bestwiets.com/product/exodus-cheese) — vanaf €42.00
+- [Sunset Sherbert lil buds per 5 gram kopen](https://bestwiets.com/product/sunset-sherbert-lil-buds-per-5-gram) — €45.00
+- [Platinum Cookie kopen](https://bestwiets.com/product/platinum-cookie) — vanaf €42.00
+- [Grape Ape kopen](https://bestwiets.com/product/grape-ape) — vanaf €30.00
+- [Blueberry Cookies kopen](https://bestwiets.com/product/blueberry-cookies) — vanaf €42.00
+- [Biscotti Cali kopen](https://bestwiets.com/product/biscotti-cali) — vanaf €45.00
+- [Ice Cream Cake kopen](https://bestwiets.com/product/ice-cream-cake) — vanaf €30.00
+- [Zkittelz NL kopen](https://bestwiets.com/product/zkittelz-nl) — vanaf €42.00
+- [Wild Amnesia Haze per 10 gram kopen](https://bestwiets.com/product/wild-amnesia-haze-per-10-gram) — €80.00
+- [Strawberry Banana Kush kopen](https://bestwiets.com/product/strawberry-banana-kush) — vanaf €42.00
+- [Granddaddy Purple kopen](https://bestwiets.com/product/granddaddy-purple) — vanaf €45.00
+- [Guava Cake kopen](https://bestwiets.com/product/guava-cake) — vanaf €33.00
+- [THC Vape Amnesia Haze kopen](https://bestwiets.com/product/thc-vape-amnesia-haze) — €65.00
+- [Green Papaya kopen](https://bestwiets.com/product/green-papaya) — vanaf €33.00
+- [Animal Cookie kopen](https://bestwiets.com/product/animal-cookie) — vanaf €42.00
+- [Cali Cocktail Gruis 5 Gram kopen](https://bestwiets.com/product/cali-cocktail-gruis-5-gram) — €30.00
+- [Black Zoap Cali kopen](https://bestwiets.com/product/black-zoap-cali) — vanaf €45.00
+- [Jack Herer Gruis 5 Gram kopen](https://bestwiets.com/product/jack-herer-gruis-5-gram) — €25.00
+- [Snoop Dogg OG kopen](https://bestwiets.com/product/snoop-dogg-og) — vanaf €42.00
+- [Wedding Cake kopen](https://bestwiets.com/product/wedding-cake) — vanaf €42.00
+- [Grease Monkey kopen](https://bestwiets.com/product/grease-monkey) — vanaf €39.00
+- [Black Cherry Punch kopen](https://bestwiets.com/product/black-cherry-punch) — vanaf €39.00
+- [Snow White kopen](https://bestwiets.com/product/snow-white) — vanaf €39.00
+- [Gorilla Butter kopen](https://bestwiets.com/product/gorilla-butter) — vanaf €33.00
+- [Kandy Kush kopen](https://bestwiets.com/product/kandy-kush) — vanaf €36.00
+- [Sweet Dreams kopen](https://bestwiets.com/product/sweet-dreams) — vanaf €42.00
+- [Cherry Bomb kopen](https://bestwiets.com/product/cherry-bomb) — vanaf €33.00
+- [Orange Bud kopen](https://bestwiets.com/product/orange-bud) — vanaf €36.00
+- [Jungle Kush per 10 gram kopen](https://bestwiets.com/product/jungle-kush-per-10-gram) — €90.00
+- [Purple Punch kopen](https://bestwiets.com/product/purple-punch) — vanaf €42.00
+- [California Mix per 5 gram kopen](https://bestwiets.com/product/california-mix-per-5-gram) — €65.00
+- [Banana Punch Dry Sift kopen](https://bestwiets.com/product/banana-punch-dry-sift) — vanaf €39.00
+- [Miracle Alien Cookie kopen](https://bestwiets.com/product/miracle-alien-cookie) — vanaf €39.00
+- [AK-47 kopen](https://bestwiets.com/product/ak-47) — vanaf €36.00
+- [Sunset Sherbert kopen](https://bestwiets.com/product/sunset-sherbert) — vanaf €39.00
+- [Piña Colada kopen](https://bestwiets.com/product/pi-a-colada) — vanaf €42.00
+- [Permanent Marker Cali kopen](https://bestwiets.com/product/permanent-marker-cali) — vanaf €48.00
+- [White Widow kopen](https://bestwiets.com/product/white-widow) — vanaf €36.00
+- [Dutch Haze kopen](https://bestwiets.com/product/dutch-haze) — vanaf €30.00
+- [Amnesia Dry Sift kopen](https://bestwiets.com/product/amnesia-dry-sift) — vanaf €39.00
+- [Big Haze per 10 gram kopen](https://bestwiets.com/product/big-haze-per-10-gram) — €90.00
+- [Oreo Cake kopen](https://bestwiets.com/product/oreo-cake) — vanaf €39.00
+- [Rainbow Zkittelz Cali kopen](https://bestwiets.com/product/rainbow-zkittelz-cali) — vanaf €45.00
+- [Mochi kopen](https://bestwiets.com/product/mochi) — vanaf €39.00
+- [Forbidden Fruit kopen](https://bestwiets.com/product/forbidden-fruit) — vanaf €36.00
+- [Pineapple Cookies kopen](https://bestwiets.com/product/pineapple-cookies) — vanaf €36.00
+- [Sour Diesel kopen](https://bestwiets.com/product/sour-diesel) — vanaf €42.00
+- [White Thunder kopen](https://bestwiets.com/product/white-thunder) — vanaf €27.00
+- [Cheese Gruis 5 gram kopen](https://bestwiets.com/product/cheese-gruis-5-gram) — €25.00
+- [Honey Banana kopen](https://bestwiets.com/product/honey-banana) — vanaf €39.00
+- [Glitter Bomb kopen](https://bestwiets.com/product/glitter-bomb) — vanaf €42.00
+- [Lemon Cherry Gelato Cali kopen](https://bestwiets.com/product/lemon-cherry-gelato-cali) — vanaf €45.00
+- [Jungle Haze per 10 gram kopen](https://bestwiets.com/product/jungle-haze-per-10-gram) — €75.00
+- [Girl Scout Cookies kopen](https://bestwiets.com/product/girl-scout-cookies) — vanaf €39.00
+- [Bestwiet Budget Pakket 6 gram kopen](https://bestwiets.com/product/bestwiet-budget-pakket-6-gram) — €60.00
+- [Kosher Kush Lil Buds per 5 gram kopen](https://bestwiets.com/product/kosher-kush-lil-buds-per-5-gram) — €45.00
+- [Super Silver Haze Gruis 5 Gram kopen](https://bestwiets.com/product/super-silver-haze-gruis-5-gram) — €25.00
+- [Dutch Cocktail Gruis 5 Gram kopen](https://bestwiets.com/product/dutch-cocktail-gruis-5-gram) — €25.00
+- [Kosher Kush kopen](https://bestwiets.com/product/kosher-kush) — vanaf €39.00
+- [Green Crack kopen](https://bestwiets.com/product/green-crack) — vanaf €39.00
+- [OG18 kopen](https://bestwiets.com/product/og18) — vanaf €39.00
+- [BHO-olie Aanbieding 2 stuks 125 kopen](https://bestwiets.com/product/bho-olie-aanbieding-2-stuks-125) — €125.00
+- [Power Plant Lil Buds kopen](https://bestwiets.com/product/power-plant-lil-buds) — €42.50
+- [Power Plant Gruis 5 Gram kopen](https://bestwiets.com/product/power-plant-gruis-5-gram) — €25.00
+- [Hollandse Cocktail Lil Buds per 10 gram kopen](https://bestwiets.com/product/hollandse-cocktail-lil-buds-per-10-gram) — €80.00
+- [OG Kush Lil Buds per 10 gram kopen](https://bestwiets.com/product/og-kush-lil-buds-per-10-gram) — €70.00
+- [Strawberry Banana Kush Lil Buds per 10 gram kopen](https://bestwiets.com/product/strawberry-banana-kush-lil-buds-per-10-gram) — €70.00
+- [Canadian Cocktail Gruis 5 Gram kopen](https://bestwiets.com/product/canadian-cocktail-gruis-5-gram) — €25.00
+- [Vanilla Latte kopen](https://bestwiets.com/product/vanilla-latte) — vanaf €42.00
+- [Amnesia Haze Gruis 5 Gram kopen](https://bestwiets.com/product/amnesia-haze-gruis-5-gram) — €25.00
+- [New York Diesel kopen](https://bestwiets.com/product/new-york-diesel) — vanaf €36.00
+- [LA Confidential kopen](https://bestwiets.com/product/la-confidential) — vanaf €42.00
+- [Crazy Glue kopen](https://bestwiets.com/product/crazy-glue) — vanaf €42.00
+- [Ice Cream Hasj kopen](https://bestwiets.com/product/ice-cream-hasj) — vanaf €39.00
+- [Northern Lights Lil Buds kopen](https://bestwiets.com/product/northern-lights-lil-buds) — €45.00
+- [White Widow Gruis 5 Gram kopen](https://bestwiets.com/product/white-widow-gruis-5-gram) — €25.00
+- [Enemy Of The State Gruis 5 Gram kopen](https://bestwiets.com/product/enemy-of-the-state-gruis-5-gram) — €25.00
+- [Strawberry Banana Hasj kopen](https://bestwiets.com/product/strawberry-banana-hasj) — vanaf €33.00
+- [Blonde Maroc Hasj kopen](https://bestwiets.com/product/blonde-maroc-hasj) — vanaf €36.00
+- [Cookies Gruis 5 Gram kopen](https://bestwiets.com/product/cookies-gruis-5-gram) — €25.00
+- [Sweet Jack Lil Buds  5 gram kopen](https://bestwiets.com/product/sweet-jack-lil-buds-5-gram) — €45.00
+- [Amnesia Haze Lil Buds kopen](https://bestwiets.com/product/amnesia-haze-lil-buds) — €45.00
+- [Kush Gruis 5 Gram kopen](https://bestwiets.com/product/kush-gruis-5-gram) — €25.00
+- [Hasjolie kopen](https://bestwiets.com/product/hasjolie) — €60.00
+- [Wietolie kopen](https://bestwiets.com/product/wietolie) — €60.00
+- [Bubble Gum Gruis 5 Gram kopen](https://bestwiets.com/product/bubble-gum-gruis-5-gram) — €25.00
+- [Enemy of the State kopen](https://bestwiets.com/product/enemy-of-the-state) — vanaf €39.00
+- [Lemon Haze Gruis 5 Gram kopen](https://bestwiets.com/product/lemon-haze-gruis-5-gram) — €25.00
+- [Italian Ice kopen](https://bestwiets.com/product/italian-ice) — vanaf €42.00
+- [Gary Payton kopen](https://bestwiets.com/product/gary-payton) — vanaf €42.00
+- [Champagne Hasj kopen](https://bestwiets.com/product/champagne-hasj) — vanaf €42.00
+- [Beldia Hasj kopen](https://bestwiets.com/product/beldia-hasj) — vanaf €36.00
+- [Amnesia Polm kopen](https://bestwiets.com/product/amnesia-polm) — vanaf €36.00
+- [Gorilla Pie kopen](https://bestwiets.com/product/gorilla-pie) — vanaf €39.00
+- [Super Lemon Haze Lil Buds kopen](https://bestwiets.com/product/super-lemon-haze-lil-buds) — €47.50
+- [Diamond Super Haze kopen](https://bestwiets.com/product/diamond-super-haze) — vanaf €39.00
+- [New York Diesel Lil Buds kopen](https://bestwiets.com/product/new-york-diesel-lil-buds) — €45.00
+- [Candy Rain kopen](https://bestwiets.com/product/candy-rain) — vanaf €39.00
+- [Cali Strawberry Pavé kopen](https://bestwiets.com/product/cali-strawberry-pav) — vanaf €48.00
+- [Ice Wine kopen](https://bestwiets.com/product/ice-wine) — vanaf €42.00
+- [Moonrock Amnesia Haze kopen](https://bestwiets.com/product/moonrock-amnesia-haze) — vanaf €90.00
+- [Candy Kush Hasj kopen](https://bestwiets.com/product/candy-kush-hasj) — vanaf €33.00
+- [Fruity Pebbles OG kopen](https://bestwiets.com/product/fruity-pebbles-og) — vanaf €36.00
+- [Jack Herer kopen](https://bestwiets.com/product/jack-herer) — vanaf €36.00
+- [Sneeuwwitje kopen](https://bestwiets.com/product/sneeuwwitje) — vanaf €36.00
+- [Canadian Mix per 5 gram kopen](https://bestwiets.com/product/canadian-mix-per-5-gram) — €60.00
+- [Northern Lights kopen](https://bestwiets.com/product/northern-lights) — vanaf €36.00
+- [BHO-olie kopen](https://bestwiets.com/product/bho-olie) — €75.00
+- [Sugar Cane kopen](https://bestwiets.com/product/sugar-cane) — vanaf €42.00
+- [Gelato Hasj kopen](https://bestwiets.com/product/gelato-hasj) — vanaf €36.00
+- [Full-Spectrum THC-olie kopen](https://bestwiets.com/product/full-spectrum-thc-olie) — €25.00
+- [Full-Spectrum BHO 99% kopen](https://bestwiets.com/product/full-spectrum-bho-99) — €32.50
+- [Blue Muffin kopen](https://bestwiets.com/product/blue-muffin) — vanaf €39.00
+- [Super Silver Haze kopen](https://bestwiets.com/product/super-silver-haze) — vanaf €39.00
+- [Tipboekje kopen](https://bestwiets.com/product/tipboekje) — €1.00
+- [Smoking Gold King Size kopen](https://bestwiets.com/product/smoking-gold-king-size) — €1.50
+- [Smoking Blue King Size kopen](https://bestwiets.com/product/smoking-blue-king-size) — €1.50
+- [Smoking Red King Size kopen](https://bestwiets.com/product/smoking-red-king-size) — €1.50
+- [Lemon Haze kopen](https://bestwiets.com/product/lemon-haze) — vanaf €39.00
+- [Power Plant kopen](https://bestwiets.com/product/power-plant) — vanaf €36.00
+- [Amnesia Haze kopen](https://bestwiets.com/product/amnesia-haze) — vanaf €36.00
+- [Amnesia Haze Voorgedraaide Joint kopen](https://bestwiets.com/product/amnesia-haze-voorgedraaide-joint) — €35.00
+- [Preroll Power Pack – 18 gram kopen](https://bestwiets.com/product/preroll-power-pack-18-gram) — €160.00
+- [Blue Lotus Voorgedraaide Joints kopen](https://bestwiets.com/product/blue-lotus-prerolls) — vanaf €29.99
+- [Super Silver Haze Voorgedraaide Joints kopen](https://bestwiets.com/product/super-silver-haze-prerolls) — vanaf €29.99
+- [Skittlez Voorgedraaide Joints kopen](https://bestwiets.com/product/skittlez-prerolls) — vanaf €29.99
+- [Amnesia Voorgedraaide Joints kopen](https://bestwiets.com/product/amnesia-prerolls) — vanaf €29.99
+- [Amnesia Superior Voorgedraaide Joints kopen](https://bestwiets.com/product/amnesia-superior-prerolls) — vanaf €24.99
+- [Gelato Voorgedraaide Joints kopen](https://bestwiets.com/product/gelato-prerolls) — vanaf €29.99
+- [Lemon Haze Voorgedraaide Joints kopen](https://bestwiets.com/product/lemon-haze-prerolls) — vanaf €29.99
+- [Preroll Maxi Pack – 18 gram kopen](https://bestwiets.com/product/preroll-maxi-pack-18-gram) — €150.00
+- [Cookies Voorgedraaide Joints kopen](https://bestwiets.com/product/cookies-prerolls) — vanaf €19.99
+- [Lemon Haze Voordeel Joints kopen](https://bestwiets.com/product/lemon-haze-voordeel-prerolls) — vanaf €24.99
+- [Loom Hellfire Voorgedraaide Joints kopen](https://bestwiets.com/product/loom-hellfire-prerolls) — vanaf €24.99
+- [Dealers Choice Kit kopen](https://bestwiets.com/product/dealers-choice-kit) — €259.99
+- [Superior Blunt Voorgedraaide Joints kopen](https://bestwiets.com/product/superior-blunt-prerolls) — vanaf €19.99
+- [Purple Kinky Kush Voorgedraaide Joints kopen](https://bestwiets.com/product/purple-kinky-kush-prerolls) — vanaf €19.99

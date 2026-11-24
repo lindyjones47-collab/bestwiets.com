@@ -1,0 +1,46 @@
+# Green Papaya kaufen – ab €33.00 | WietStore
+
+> Canonical page: https://bestwiets.com/de/product/green-papaya · Language: Deutsch · Updated: 2026-11-24 · Source: generated from the same data as the HTML page · Maintainer: WietStore (bestwiets@outlook.com)
+
+Green Papaya kaufen bei WietStore. Green Papaya ist ein indicadominanter Hybrid mit ausgeprägtem tropischem Fruchtprofil, dominiert von süßer Papaya und…
+
+[Startseite](https://bestwiets.com/de/) › [Shop](https://bestwiets.com/de/shop) › [Green Papaya](https://bestwiets.com/de/product/green-papaya)
+
+# Green Papaya kaufen
+
+![Green Papaya kaufen](https://bestwiets.com/images/2026/01/Green-Papaya.jpg)
+
+**ab €33.00** · Gras (Blüten) · Auf Lager
+
+Green Papaya ist ein indicadominanter Hybrid mit ausgeprägtem tropischem Fruchtprofil, dominiert von süßer Papaya und Mango. Die Blüten sind dicht und harzreich, mit einem angenehm schwülen Duft. Die entspannende Wirkung bietet angenehme körperliche Ruhe ohne schwere Sedierung. THC-Gehalt 18–22 %. Eine tropische Überraschung für Liebhaber fruchtiger Indicas.
+
+- **THC:** 18-22%
+- **Geschmack:** Papaya, tropisch, Mango, süß
+- **Wirkung:** entspannend, euphorisch, ausgewogen, körperlich
+- **Medizinisch:** Stress, Schmerzen, Anspannung
+
+**Verfügbare Gewichte:**
+
+- 3 g — €33.00 (€11.00/g)
+- 5 g — €55.00 (€11.00/g)
+- 10 g — €110.00 (€11.00/g)
+- 15 g — €165.00 (€11.00/g)
+- 25 g — €275.00 (€11.00/g)
+- 35 g — €385.00 (€11.00/g)
+- 50 g — €550.00 (€11.00/g)
+- 65 g — €715.00 (€11.00/g)
+- 80 g — €880.00 (€11.00/g)
+- 100 g — €1100.00 (€11.00/g)
+
+Erhältlich von 3 bis 100 Gramm. Diskret und geruchsneutral geliefert nach Deutschland, Österreich, in die Schweiz, nach Frankreich, Belgien und in die Niederlande.
+
+Versandkosten: Deutschland, Österreich, Schweiz und andere europäische Länder €20, Niederlande €15 (Amsterdam €10). Mindestbestellwert €100. Bezahlung per Banküberweisung, Bitcoin, USDT oder Litecoin.
+
+## Das könnte dir auch gefallen
+
+- [Tropicana Cookies kaufen](https://bestwiets.com/de/product/tropicana-cookies) — ab €42.00
+- [Pink Runtz kaufen](https://bestwiets.com/de/product/pink-runtz) — ab €42.00
+- [Mintz kaufen](https://bestwiets.com/de/product/mintz) — ab €42.00
+- [Route 66 kaufen](https://bestwiets.com/de/product/route-66) — ab €42.00
+
+[Zum gesamten Sortiment](https://bestwiets.com/de/shop) · [Lieferung & Versand](https://bestwiets.com/de/delivery) · [Cannabis kaufen in Deutschland](https://bestwiets.com/de/cannabis-kaufen-deutschland)

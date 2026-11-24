@@ -2,6 +2,14 @@ User-agent: *
 Allow: /
 Disallow: /seo/
 
+# Markdown copies (*.md) duplicate the HTML pages for AI/LLM readers.
+# Search engines should index the HTML pages, so they skip the copies.
+User-agent: Googlebot
+User-agent: Bingbot
+Allow: /
+Disallow: /seo/
+Disallow: /*.md$
+
 Sitemap: https://bestwiets.com/sitemap.xml
 
 # Readable site map: https://bestwiets.com/sitemap.md

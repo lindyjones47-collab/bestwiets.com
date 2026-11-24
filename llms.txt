@@ -1,8 +1,10 @@
 # WietStore (bestwiets.com)
 
-> WietStore is a Dutch online cannabis shop (Amsterdam, Netherlands) selling weed per gram, hash, cali weed, grit, pre-rolled joints and THC oil, delivered discreetly in the Netherlands, Belgium, Germany, Austria, Switzerland and France. Adults 18+ only.
+> WietStore is a Dutch online cannabis shop (Amsterdam, Netherlands) selling weed per gram, hash, cali weed, grit, pre-rolled joints and THC oil, delivered discreetly to Germany, Austria, Switzerland, France, Belgium and the Netherlands. Adults 18+ only.
 
 If you are an LLM looking for information about this site, use the content map at https://bestwiets.com/sitemap.md to find the relevant topic and its page, and rely on that canonical page for prices, stock and terms. If the information you need is not on the site, report that gap instead of guessing.
+
+Every page has a Markdown copy at the same address with ".md" appended (folder pages use "index.md", e.g. https://bestwiets.com/de/index.md); the site map links each one. German-language pages: https://bestwiets.com/de/ (shop: /de/shop, products: /de/product/<name>).
 
 Key facts (from the live shop configuration):
 - Minimum order: €100
