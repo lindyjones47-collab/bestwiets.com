@@ -284,14 +284,14 @@ LOC_META = {
     "en": {
         "home": ("Buy Weed Online | Cannabis & Hash Delivered – WietStore", "Buy weed and hash online at WietStore: premium cannabis, hash and oil, discreetly delivered across NL, Belgium & Germany. Pay by bank, Bitcoin or USDT."),
         "shop": ("Buy Weed, Hash & Cali Weed – Online Cannabis Shop | WietStore", "Browse the full range: weed, hash, cali weed, grit and cannabis oil. Order online and get it discreetly delivered in NL, BE and DE."),
-        "delivery": ("Delivery & Shipping | WietStore", "Discreet, odourless delivery across the Netherlands, Belgium, Germany and France — often within 24 hours."),
+        "delivery": ("Delivery & Shipping | WietStore", "Discreet, odour-proof delivery to the Netherlands, Belgium, Germany, Austria, Switzerland and France. Delivery €10–€20 depending on location."),
         "about": ("About WietStore | Online Cannabis Shop", "Premium cannabis of Amsterdam coffeeshop quality, delivered safely and discreetly in NL, BE and DE."),
         "contact": ("Contact | WietStore", "Questions about your order or delivery? Get in touch by email or WhatsApp."),
     },
     "de": {
         "home": ("Cannabis online kaufen | Gras & Haschisch bestellen – WietStore", "Cannabis online kaufen bei WietStore: Premium Gras, Haschisch und Öl. Diskret geliefert in NL, Belgien & Deutschland. Zahlung per Bank, Bitcoin oder USDT."),
         "shop": ("Gras, Haschisch & Cali Weed kaufen | Cannabis Shop – WietStore", "Entdecke das gesamte Sortiment: Gras, Haschisch, Cali Weed, Gruis und Öl. Online bestellen und diskret geliefert in NL, Belgien und Deutschland."),
-        "delivery": ("Lieferung & Versand | WietStore", "Diskret und geruchsneutral geliefert in die Niederlande, Belgien, Deutschland und Frankreich — oft innerhalb von 24 Stunden."),
+        "delivery": ("Lieferung & Versand | WietStore", "Diskret und geruchsneutral geliefert nach Deutschland, Österreich, in die Schweiz, nach Frankreich, Belgien und in die Niederlande. Versand €10–€20 je nach Lieferadresse."),
         "about": ("Über WietStore | Online Cannabis Shop", "Premium Cannabis in Amsterdamer Coffeeshop-Qualität, sicher und diskret geliefert in NL, BE und DE."),
         "contact": ("Kontakt | WietStore", "Fragen zu deiner Bestellung oder Lieferung? Kontaktiere uns per E-Mail oder WhatsApp."),
     },
@@ -460,7 +460,7 @@ PAGE_CONTENT = {
             "Click a product for the full description, THC level, flavour and effect:"]),
         "delivery": ("Delivery &amp; shipping", [
             "WietStore delivers <strong>discreetly and odourlessly</strong> across the Netherlands, Belgium, Germany and France. Orders within the Netherlands often arrive within 24 hours; delivery to Belgium and Germany usually takes 2&ndash;4 working days.",
-            "Every parcel is packed neutrally and odour-proof, with no reference to the contents. Have a question? <a href=\"/en/contact\">Contact us</a> or visit the <a href=\"/en/shop\">shop</a>."]),
+            "Every parcel is packed neutrally and odour-proof, with no reference to the contents. Delivery costs depend on your address: Amsterdam &euro;10, rest of the Netherlands &euro;15, other European countries &euro;20 (minimum order &euro;100). Have a question? <a href=\"/en/contact\">Contact us</a> or visit the <a href=\"/en/shop\">shop</a>."]),
         "about": ("About WietStore", [
             "WietStore is a Netherlands-based cannabis shop delivering premium weed, hash and cannabis oil of <strong>Amsterdam coffeeshop quality</strong> to customers in the Netherlands, Belgium, Germany and France.",
             "We focus on product quality, discreet delivery and clear customer information. Browse our <a href=\"/en/shop\">range</a> to learn more."]),
@@ -479,7 +479,7 @@ PAGE_CONTENT = {
             "Klicke auf ein Produkt f&uuml;r die vollst&auml;ndige Beschreibung, THC-Gehalt, Geschmack und Wirkung:"]),
         "delivery": ("Lieferung &amp; Versand", [
             "WietStore liefert <strong>diskret und geruchsneutral</strong> in die Niederlande, nach Belgien, Deutschland und Frankreich. Lieferungen nach Deutschland dauern in der Regel 2&ndash;4 Werktage.",
-            "Jedes Paket wird neutral und geruchsdicht verpackt, ohne Hinweis auf den Inhalt. Fragen? <a href=\"/de/contact\">Kontaktiere uns</a> oder besuche den <a href=\"/de/shop\">Shop</a>."]),
+            "Jedes Paket wird neutral und geruchsdicht verpackt, ohne Hinweis auf den Inhalt. Die Versandkosten richten sich nach der Lieferadresse: Deutschland, Österreich, Schweiz und andere europäische Länder &euro;20, Niederlande &euro;15 (Amsterdam &euro;10), Mindestbestellwert &euro;100. Fragen? <a href=\"/de/contact\">Kontaktiere uns</a> oder besuche den <a href=\"/de/shop\">Shop</a>."]),
         "about": ("&Uuml;ber WietStore", [
             "WietStore ist ein in den Niederlanden ans&auml;ssiger Cannabis-Shop, der Premium-Gras, Haschisch und Cannabis&ouml;l in <strong>Amsterdamer Coffeeshop-Qualit&auml;t</strong> an Kunden in den Niederlanden, Belgien, Deutschland und Frankreich liefert.",
             "Wir legen Wert auf Produktqualit&auml;t, diskrete Lieferung und gute Kundeninformation. Entdecke unser <a href=\"/de/shop\">Sortiment</a>."]),
