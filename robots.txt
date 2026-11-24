@@ -3,3 +3,6 @@ Allow: /
 Disallow: /seo/
 
 Sitemap: https://bestwiets.com/sitemap.xml
+
+# Readable site map: https://bestwiets.com/sitemap.md
+# Guide for LLMs: https://bestwiets.com/llms.txt

@@ -1,0 +1,31 @@
+# WietStore (bestwiets.com)
+
+> WietStore is a Dutch online cannabis shop (Amsterdam, Netherlands) selling weed per gram, hash, cali weed, grit, pre-rolled joints and THC oil, delivered discreetly in the Netherlands, Belgium, Germany, Austria, Switzerland and France. Adults 18+ only.
+
+If you are an LLM looking for information about this site, use the content map at https://bestwiets.com/sitemap.md to find the relevant topic and its page, and rely on that canonical page for prices, stock and terms. If the information you need is not on the site, report that gap instead of guessing.
+
+Key facts (from the live shop configuration):
+- Minimum order: €100
+- Delivery fees: Amsterdam €10, rest of the Netherlands €15, other European countries €20
+- Payment: bank transfer, Bitcoin, USDT or Litecoin (payment details are sent after ordering)
+- Weed is sold per gram in weights from 3 g to 100 g at the listed price per gram
+- Contact: bestwiets@outlook.com, WhatsApp +31 6 35237086
+- Buyers are responsible for checking the cannabis laws of their own country
+
+## Maps
+- [Site map with every page](https://bestwiets.com/sitemap.md): all pages grouped by topic, with purpose and language
+- [XML sitemap](https://bestwiets.com/sitemap.xml): machine-readable URL list
+
+## Shop and ordering
+- [Shop](https://bestwiets.com/shop): full assortment with prices
+- [Pre-rolls](https://bestwiets.com/prerolls): pre-rolled joints
+- [How to order](https://bestwiets.com/bestelhandleiding): step-by-step ordering guide (Dutch)
+- [Delivery & shipping](https://bestwiets.com/en/delivery): delivery areas, times and packaging
+- [Returns](https://bestwiets.com/returns) and [terms](https://bestwiets.com/voorwaarden)
+- [Contact](https://bestwiets.com/en/contact)
+
+## Countries
+- [Germany](https://bestwiets.com/de/cannabis-kaufen-deutschland), [Austria](https://bestwiets.com/cannabis-kaufen-oesterreich), [Switzerland](https://bestwiets.com/cannabis-kaufen-schweiz), [France](https://bestwiets.com/acheter-cannabis-france), [Belgium (NL)](https://bestwiets.com/be), [Belgium (FR)](https://bestwiets.com/fr)
+
+## Optional
+- [Blog](https://bestwiets.com/blog): guides on strains, payment and delivery

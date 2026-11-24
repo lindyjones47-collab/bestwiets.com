@@ -13,7 +13,7 @@ sitemap.xml.
 WORKFLOW: edit index.html (the template), then run `python generate.py`, then
 commit. index.html stays the single source of truth.
 """
-import json, math, os, re, datetime, hashlib
+import json, math, os, re, datetime, hashlib, html
 
 SITE = "https://bestwiets.com"
 OG_DEFAULT = SITE + "/images/2026/06/Tropicana-Cookies.png"
@@ -221,7 +221,10 @@ def seo_block(title, desc, path, og_image, jsonld, alts=None):
 MARKER = re.compile(r"<!--SEO:START-->.*?<!--SEO:END-->", re.S)
 APP_MARKER = re.compile(r"<!--APP:START-->.*?<!--APP:END-->", re.S)
 
+ROUTE_META = {}  # path -> (title, desc, lang); feeds sitemap.md / llms.txt
+
 def write_route(out_path, title, desc, path, og_image, jsonld, alts=None, lang="nl", body=""):
+    ROUTE_META[path] = (title, desc, lang)
     # record a content-stable lastmod (title+desc+body drive the freshness signal)
     _lastmod(path, title, desc, body or "")
     block = "<!--SEO:START-->\n" + seo_block(title, desc, path, og_image, jsonld, alts) + "\n<!--SEO:END-->"
@@ -257,8 +260,8 @@ LOC_META = {
         "contact": ("Contact | WietStore", "Questions about your order or delivery? Get in touch by email or WhatsApp."),
     },
     "de": {
-        "home": ("Cannabis online kaufen & bestellen | Gras & Haschisch geliefert – WietStore", "Cannabis online kaufen bei WietStore: Premium Gras, Haschisch und Öl. Diskret geliefert in NL, Belgien & Deutschland. Zahlung per Bank, Bitcoin oder USDT."),
-        "shop": ("Gras, Haschisch & Cali Weed kaufen – Online Cannabis Shop | WietStore", "Entdecke das gesamte Sortiment: Gras, Haschisch, Cali Weed, Gruis und Öl. Online bestellen und diskret geliefert in NL, Belgien und Deutschland."),
+        "home": ("Cannabis online kaufen | Gras & Haschisch bestellen – WietStore", "Cannabis online kaufen bei WietStore: Premium Gras, Haschisch und Öl. Diskret geliefert in NL, Belgien & Deutschland. Zahlung per Bank, Bitcoin oder USDT."),
+        "shop": ("Gras, Haschisch & Cali Weed kaufen | Cannabis Shop – WietStore", "Entdecke das gesamte Sortiment: Gras, Haschisch, Cali Weed, Gruis und Öl. Online bestellen und diskret geliefert in NL, Belgien und Deutschland."),
         "delivery": ("Lieferung & Versand | WietStore", "Diskret und geruchsneutral geliefert in die Niederlande, Belgien, Deutschland und Frankreich — oft innerhalb von 24 Stunden."),
         "about": ("Über WietStore | Online Cannabis Shop", "Premium Cannabis in Amsterdamer Coffeeshop-Qualität, sicher und diskret geliefert in NL, BE und DE."),
         "contact": ("Kontakt | WietStore", "Fragen zu deiner Bestellung oder Lieferung? Kontaktiere uns per E-Mail oder WhatsApp."),
@@ -289,6 +292,14 @@ def _article_links():
     return '<ul class="pr-list">%s</ul>' % "".join(
         '<li><a href="/%s">%s</a></li>' % (esc(b["slug"]), esc(b["title"])) for b in BLOG)
 
+MIN_ORDER = int(re.search(r'const MIN_ORDER\s*=\s*(\d+)', TEMPLATE).group(1))
+
+def _related_html(p):  # same selection as the SPA's pageProduct (same category, first 4)
+    rel = [x for x in PRODUCTS if x.get('cat') == p.get('cat') and x['slug'] != p['slug']][:4]
+    if not rel:
+        return ''
+    return '<h2>Ook interessant</h2>' + _product_links(rel)
+
 def render_product(p):
     path = "/product/" + p["slug"]
     specs = []
@@ -315,7 +326,9 @@ def render_product(p):
         + "<p>%s</p>" % esc(p["desc"])
         + specs_html
         + variants_html
-        + ("<p>Verkrijgbaar van 3 tot 100 gram. " if p.get("ppg") else "<p>") + "Discreet en geurloos bezorgd in Nederland, Belgi&euml; en Duitsland.</p>"
+        + ("<p>Verkrijgbaar van 3 tot 100 gram. " if p.get("ppg") else "<p>") + "Discreet en geurloos bezorgd in Nederland, Belgi&euml;, Duitsland, Oostenrijk, Zwitserland en Frankrijk.</p>"
+        + "<p>Bezorgkosten: Amsterdam &euro;10, rest van Nederland &euro;15, overige Europese landen &euro;20. Minimale bestelwaarde &euro;%d. Betalen via bankoverschrijving, Bitcoin, USDT of Litecoin.</p>" % MIN_ORDER
+        + _related_html(p)
         + '<p><a href="/shop">Bekijk het volledige assortiment</a> &middot; <a href="/bestelhandleiding">Bestelhandleiding</a> &middot; <a href="/delivery">Bezorging &amp; verzending</a></p>'
         + "</article>"
     )
@@ -472,7 +485,10 @@ for lang in ("en", "de"):
         urls.append((path, TODAY, "0.8" if key in ("home", "shop") else "0.5"))
 
 # Belgium country landing pages (regional hreflang nl-BE / fr-BE)
-BE_ALTS = [("nl-BE", "/be"), ("fr-BE", "/fr"), ("nl", "/"), ("x-default", "/")]
+COUNTRY_ALTS = [("nl-BE", "/be"), ("fr-BE", "/fr"), ("de-DE", "/de/cannabis-kaufen-deutschland"),
+                ("de-AT", "/cannabis-kaufen-oesterreich"), ("de-CH", "/cannabis-kaufen-schweiz"),
+                ("fr-FR", "/acheter-cannabis-france")]  # one reciprocal hreflang cluster
+BE_ALTS = COUNTRY_ALTS
 BELGIUM = {
     "be": ("nl", "Wiet Kopen België | Veilige & Discrete Levering – WietStore",
            "Wiet kopen in België? Bestel premium wiet, hasj en cali weed online bij WietStore. Discreet en betrouwbaar bezorgd in heel België, vaak binnen 2–4 werkdagen.",
@@ -492,7 +508,7 @@ for key, (lang, title, desc, crumb_name) in BELGIUM.items():
     urls.append((path, TODAY, "0.9"))
 
 # Germany country landing page (German URL targeting "cannabis kaufen Deutschland")
-DE_LANDING_ALTS = [("de", "/de/cannabis-kaufen-deutschland"), ("nl", "/"), ("x-default", "/")]
+DE_LANDING_ALTS = COUNTRY_ALTS
 de_path = "/de/cannabis-kaufen-deutschland"
 de_bc = crumb([("Startseite", "/de/"), ("Cannabis kaufen Deutschland", de_path)])
 de_body = country_body(
@@ -533,7 +549,7 @@ _LAND_CK = {"de-AT": "at", "de-CH": "ch", "fr-FR": "fr"}
 for L in EXTRA_LANDINGS:
     path = "/" + L["slug"]
     bc = crumb([(L["home"], "/"), (L["crumb"], path)])
-    alts = [(L["hl"], path), ("x-default", "/")]
+    alts = COUNTRY_ALTS
     _ck = _LAND_CK[L["hl"]]
     body = ('<section class="pr"><h1>%s</h1><p>%s</p>%s%s<p><a href="%s">%s</a></p></section>') % (
         esc(L["h1"]), L["lead"], _product_links(limit=16), _country_links(L["lang"]),
@@ -653,7 +669,8 @@ for p in PRODUCTS:
 
 # Sitemap — use content-stable lastmod per URL (only changes when the page changes)
 sm = ['<?xml version="1.0" encoding="UTF-8"?>',
-      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+      '  <!-- Readable site map with page purposes: https://bestwiets.com/sitemap.md ; guide for LLMs: https://bestwiets.com/llms.txt -->']
 for path, lastmod, prio in urls:
     lastmod = PAGE_LASTMOD.get(path, lastmod)
     sm.append("  <url><loc>%s%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>" % (SITE, path, lastmod, prio))
@@ -661,6 +678,84 @@ sm.append("</urlset>")
 open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write("\n".join(sm))
 # persist the lastmod manifest so unchanged pages keep their date on the next build
 json.dump(_LM_STORE, open(_LM_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=0, sort_keys=True)
+
+# ---------- Public reading maps: /sitemap.md and /llms.txt (same source data as the HTML) ----------
+_LANG_NAME = {"nl": "Nederlands", "de": "Deutsch", "en": "English", "fr": "Français"}
+def _md(t):
+    return re.sub(r"\s+", " ", html.unescape(t)).replace("[", "(").replace("]", ")").strip()
+def _line(path):
+    t, d, l = ROUTE_META[path]
+    return "- [%s](%s%s) — %s _(%s)_" % (_md(t), SITE, path, _md(d), _LANG_NAME.get(l, l))
+_seen = set()
+def _sec(title, intro, paths):
+    paths = [p for p in paths if p in ROUTE_META and p not in _seen]
+    _seen.update(paths)
+    if not paths:
+        return []
+    return ["", "## " + title, "", intro, ""] + [_line(p) for p in paths]
+_prod_paths = {}
+for _p in PRODUCTS:
+    _prod_paths.setdefault(_p.get("cat", "Overig"), []).append("/product/" + _p["slug"])
+_city_by_cc = {}
+for _c in CITY:
+    _city_by_cc.setdefault(_c["c"], []).append("/" + _c["s"])
+_blog_by_lang = {}
+for _b in BLOG:
+    _blog_by_lang.setdefault(_b.get("lang", "nl"), []).append("/" + _b["slug"])
+smd = ["# WietStore (bestwiets.com) — site map", "",
+       "Every public page of bestwiets.com, grouped by topic, with its purpose and language. "
+       "Links point to the canonical HTML pages; prices, stock and delivery terms on those pages are authoritative. "
+       "Generated from the same source data as the website (%d pages)." % len(urls)]
+smd += _sec("Main pages", "Home, shop, ordering, delivery, returns, terms and contact.",
+            ["/", "/shop", "/prerolls", "/delivery", "/bestelhandleiding", "/returns", "/voorwaarden", "/about", "/contact", "/blog",
+             "/en/", "/en/shop", "/en/delivery", "/en/about", "/en/contact", "/de/", "/de/shop", "/de/delivery", "/de/about", "/de/contact"])
+smd += _sec("Country pages", "Ordering and delivery per country (Belgium, Germany, Austria, Switzerland, France).",
+            ["/be", "/fr", "/de/cannabis-kaufen-deutschland", "/cannabis-kaufen-oesterreich", "/cannabis-kaufen-schweiz", "/acheter-cannabis-france"])
+for _cc, _name in (("de", "Germany"), ("at", "Austria"), ("ch", "Switzerland"), ("fr", "France")):
+    smd += _sec("City pages — " + _name, "Local delivery information per city in %s." % _name, _city_by_cc.get(_cc, []))
+for _cat, _ps in _prod_paths.items():
+    smd += _sec("Products — " + _cat, "Product pages with price per weight or per item, THC, taste and effect.", _ps)
+for _l, _ps in _blog_by_lang.items():
+    smd += _sec("Guides (%s)" % _LANG_NAME.get(_l, _l), "Articles about strains, buying, payment and delivery.", _ps)
+smd += _sec("Other pages", "Remaining public pages.", sorted(ROUTE_META))
+open(os.path.join(ROOT, "sitemap.md"), "w", encoding="utf-8", newline="\n").write("\n".join(smd) + "\n")
+
+_FEE_EN = {"Amsterdam": "Amsterdam", "Andere stad in Nederland": "rest of the Netherlands", "Ander land in Europa": "other European countries"}
+_fees = ", ".join("%s €%s" % (_FEE_EN.get(k, k), v) for k, v in re.findall(r'"([^"]+)"\s*:\s*(\d+)', re.search(r"const DELIVERY_FEES\s*=\s*\{([^}]*)\}", TEMPLATE).group(1)))
+llms = """# WietStore (bestwiets.com)
+
+> WietStore is a Dutch online cannabis shop (Amsterdam, Netherlands) selling weed per gram, hash, cali weed, grit, pre-rolled joints and THC oil, delivered discreetly in the Netherlands, Belgium, Germany, Austria, Switzerland and France. Adults 18+ only.
+
+If you are an LLM looking for information about this site, use the content map at https://bestwiets.com/sitemap.md to find the relevant topic and its page, and rely on that canonical page for prices, stock and terms. If the information you need is not on the site, report that gap instead of guessing.
+
+Key facts (from the live shop configuration):
+- Minimum order: €%d
+- Delivery fees: %s
+- Payment: bank transfer, Bitcoin, USDT or Litecoin (payment details are sent after ordering)
+- Weed is sold per gram in weights from 3 g to 100 g at the listed price per gram
+- Contact: bestwiets@outlook.com, WhatsApp +31 6 35237086
+- Buyers are responsible for checking the cannabis laws of their own country
+
+## Maps
+- [Site map with every page](https://bestwiets.com/sitemap.md): all pages grouped by topic, with purpose and language
+- [XML sitemap](https://bestwiets.com/sitemap.xml): machine-readable URL list
+
+## Shop and ordering
+- [Shop](https://bestwiets.com/shop): full assortment with prices
+- [Pre-rolls](https://bestwiets.com/prerolls): pre-rolled joints
+- [How to order](https://bestwiets.com/bestelhandleiding): step-by-step ordering guide (Dutch)
+- [Delivery & shipping](https://bestwiets.com/en/delivery): delivery areas, times and packaging
+- [Returns](https://bestwiets.com/returns) and [terms](https://bestwiets.com/voorwaarden)
+- [Contact](https://bestwiets.com/en/contact)
+
+## Countries
+- [Germany](https://bestwiets.com/de/cannabis-kaufen-deutschland), [Austria](https://bestwiets.com/cannabis-kaufen-oesterreich), [Switzerland](https://bestwiets.com/cannabis-kaufen-schweiz), [France](https://bestwiets.com/acheter-cannabis-france), [Belgium (NL)](https://bestwiets.com/be), [Belgium (FR)](https://bestwiets.com/fr)
+
+## Optional
+- [Blog](https://bestwiets.com/blog): guides on strains, payment and delivery
+""" % (MIN_ORDER, _fees)
+open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8", newline="\n").write(llms)
+print("Wrote sitemap.md (%d linked pages) and llms.txt" % len(_seen))
 
 print("Generated %d pages + %d articles + %d products = %d routes" % (
     len(PAGES), len(BLOG), len(PRODUCTS), len(urls)))

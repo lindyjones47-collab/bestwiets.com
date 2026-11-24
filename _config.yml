@@ -1,0 +1,10 @@
+# GitHub Pages build settings for bestwiets.com
+# - exclude: internal SEO drafts, generator and work files are not part of the public site
+# - markdown_ext without "md": .md files (e.g. /sitemap.md) are served raw as text/markdown,
+#   not converted to HTML
+exclude:
+  - seo
+  - seo-work
+  - generate.py
+  - README.md
+markdown_ext: "markdown,mkdown,mkdn,mkd"
